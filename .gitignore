@@ -1,2 +1,5 @@
 #java
 *.class
+
+#javascript
+node_modules
