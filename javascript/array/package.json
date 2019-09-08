@@ -1,0 +1,27 @@
+{
+  "name": "array",
+  "version": "1.0.0",
+  "description": "Array ",
+  "main": "sda.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imgovind/dsalg.git"
+  },
+  "keywords": [
+    "array",
+    "algorithm",
+    "datastructure"
+  ],
+  "author": "Govindarajan Panneerselvam",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/imgovind/dsalg/issues"
+  },
+  "homepage": "https://github.com/imgovind/dsalg#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
