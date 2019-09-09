@@ -1,0 +1,16 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "just a bunch of tests",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "helloWorld": "node helloWorld.js",
+    "inquirer": "node -r esm restaurant.js"
+  },
+  "author": "Govindarajan Panneerselvam",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.0"
+  }
+}
