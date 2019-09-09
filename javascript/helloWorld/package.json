@@ -4,8 +4,7 @@
   "description": "just a bunch of tests",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "helloWorld": "node helloWorld.js",
-    "inquirer": "node -r esm restaurant.js"
+    "start": "node -r esm restaurant.js"
   },
   "author": "Govindarajan Panneerselvam",
   "license": "MIT",

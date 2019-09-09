@@ -1,30 +1,10 @@
 'use strict';
-import * as inquirer from 'inquirer';
 
-const validateNumber = (value) => {
-  let numberRegex = /^\d*$/gmi;
-  if(value.match(numberRegex)) {
-    return value;
-  } else {
-    return null;
-  }
-},
-getList = (name, message, choices) => {
-  return {
-    type: 'list',
-    name: name,
-    message: message,
-    choices: choices
-  }
-},
-getInput = (name, message, validateFunc = null) => {
-  return {
-    type: 'input',
-    name: name,
-    message: message
-  }
-},
-getQuantity = (name, item) => getInput(name, 'How many of ' + item + ' would you like?', validateNumber);
+//TODO : Make this running forever with an exit condition
+
+import * as inquirer from 'inquirer';
+import { validateNumber } from '../utils/validation';
+import { getList, getQuantity } from '../utils/prompt';
 
 const menu = {
   main : getList('item', 'What would you like to have?', ['Idly', 'Dosa', 'Pongal', 'Vada']),
@@ -73,8 +53,9 @@ inquirer
   }
 })
 .then((answers) => {
-  let item = answers[0], moreOptions = answers[1], answer = answers[2]
-  //console.log(`item -> ${item}, moreOptions -> ${moreOptions} & answer -> ${JSON.stringify(answer)}`);
+  let item = answers[0], 
+  moreOptions = answers[1], 
+  answer = answers[2]
   if (moreOptions) {
     let subItem = answer['subItem'].toString().toLowerCase();
     return Promise.all([
@@ -97,7 +78,6 @@ inquirer
   answer = answers[2], 
   quantity = validateNumber(answer.quantity),
   price = subItem ? menu[item][subItem]['price'] : menu[item]['price'];
-  //console.log(`order -> ${order}, quantity -> ${quantity} & answer -> ${JSON.stringify(answer)}`);
   if (quantity) {
     return Promise.all([
       Promise.resolve(order),
