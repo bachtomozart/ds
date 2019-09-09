@@ -1,19 +1,19 @@
 'use strict';
 
 const getList = (name, message, choices) => {
-  return {
+  return [{
     type: 'list',
     name: name,
     message: message,
     choices: choices
-  }
+  }];
 },
 getInput = (name, message) => {
-  return {
+  return [{
     type: 'input',
     name: name,
     message: message
-  }
+  }];
 },
 getQuantity = (name, item) => getInput(name, 'How many of ' + item + ' would you like?');
 

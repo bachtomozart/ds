@@ -9,7 +9,9 @@
   "author": "Govindarajan Panneerselvam",
   "license": "MIT",
   "dependencies": {
+    "deasync": "^0.1.15",
     "esm": "^3.2.25",
-    "inquirer": "^7.0.0"
+    "inquirer": "^7.0.0",
+    "synchronized-promise": "^0.1.0"
   }
 }

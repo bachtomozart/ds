@@ -3,30 +3,44 @@
 //TODO : Make this running forever with an exit condition
 
 import * as inquirer from 'inquirer';
+import deasync from 'deasync';
+const sp = require('synchronized-promise');
 import { validateNumber } from '../utils/validation';
 import { getList, getQuantity } from '../utils/prompt';
 
-const menu = {
-  main : getList('item', 'What would you like to have?', ['Idly', 'Dosa', 'Pongal', 'Vada']),
-  idly : { prompt: getQuantity('quantity', 'idly'), price: 5.99 },
-  dosa : {
-    main: getList('subItem', 'Which dosa would you like?', ['Plain', 'Masala', 'Onion', 'Special']),
-    plain : { prompt: getQuantity('quantity', 'plain dosa'), price: 7.99 },
-    masala : { prompt: getQuantity('quantity', 'masala dosa'), price: 9.99 },
-    onion : { prompt: getQuantity('quantity', 'onion dosa'), price: 9.99 },
-    special : { prompt: getQuantity('quantity', 'special dosa'), price: 12.99 },
-  },
-  pongal : { prompt: getQuantity('quantity', 'pongal'), price: 8.99 },
-  vada : {
-    main : getList('subItem', 'Which vada would you like?', ['Plain', 'Sambar', 'Curd']),
-    plain: { prompt: getQuantity('quantity', 'plain vada'), price: 3.99 },
-    sambar: { prompt: getQuantity('quantity', 'sambar vada'), price: 4.99 },
-    curd: { prompt: getQuantity('quantity', 'curd vada'), price: 4.99 }
+class Restaurant {
+  constructor() {
+    this.order = [];
+    this.menu = {
+      main : getList('item', 'What would you like to have?', ['Idly', 'Dosa', 'Pongal', 'Vada', 'Exit']),
+      idly : { prompt: getQuantity('quantity', 'idly'), price: 5.99 },
+      dosa : {
+        main: getList('subItem', 'Which dosa would you like?', ['Plain', 'Masala', 'Onion', 'Special']),
+        plain : { prompt: getQuantity('quantity', 'plain dosa'), price: 7.99 },
+        masala : { prompt: getQuantity('quantity', 'masala dosa'), price: 9.99 },
+        onion : { prompt: getQuantity('quantity', 'onion dosa'), price: 9.99 },
+        special : { prompt: getQuantity('quantity', 'special dosa'), price: 12.99 },
+      },
+      pongal : { prompt: getQuantity('quantity', 'pongal'), price: 8.99 },
+      vada : {
+        main : getList('subItem', 'Which vada would you like?', ['Plain', 'Sambar', 'Curd']),
+        plain: { prompt: getQuantity('quantity', 'plain vada'), price: 3.99 },
+        sambar: { prompt: getQuantity('quantity', 'sambar vada'), price: 4.99 },
+        curd: { prompt: getQuantity('quantity', 'curd vada'), price: 4.99 }
+      }
+    }
   }
 }
 
+let res = new Restaurant();
+let pr = deasync(res.prompter);
+let answer = pr(res.menu['main']);
+console.log("Here");
+console.log(JSON.stringify(answer));
+
+/*
 inquirer
-.prompt([menu['main']])
+.prompt(menu['main'])
 .then((answer) => {
   console.log(answer);
   const item = answer.item.toString().toLowerCase();
@@ -37,7 +51,7 @@ inquirer
       return Promise.all([
         Promise.resolve(item),
         Promise.resolve(false), 
-        inquirer.prompt([menu[item]['prompt']])
+        inquirer.prompt(menu[item]['prompt'])
       ]);
       break;
     case 'dosa':
@@ -45,7 +59,7 @@ inquirer
       return Promise.all([
         Promise.resolve(item),
         Promise.resolve(true), 
-        inquirer.prompt([menu[item]['main']])
+        inquirer.prompt(menu[item]['main'])
       ]);
       break;
     default:
@@ -61,7 +75,7 @@ inquirer
     return Promise.all([
       Promise.resolve(item),
       Promise.resolve(subItem),
-      inquirer.prompt([menu[item][subItem]['prompt']])
+      inquirer.prompt(menu[item][subItem]['prompt'])
     ]);
   } else {
     return Promise.all([
@@ -107,3 +121,4 @@ Total Cost - ${total}`
 .catch((exception) => {
   console.log(exception);
 });
+*/
