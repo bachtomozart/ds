@@ -2,9 +2,8 @@
 import { StackArray, demoStackArray } from './stackArray';
 import { StackLinkedList, demoStackLinkedList } from './stackLinkedList';
 
-// demoStackArray();
+demoStackArray();
 
-// console.log('===================');
-// console.log('===================');
+console.log('===================');
 
 demoStackLinkedList();

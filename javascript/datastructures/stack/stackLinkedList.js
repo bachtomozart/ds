@@ -64,7 +64,7 @@ class StackLinkedList {
 
   isFull() {
     if(this.count < this.size) {
-      console.log('The Stack is not empty');
+      console.log('The Stack is not full');
       return false;
     } else {
       console.log('The Stack is full');

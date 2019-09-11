@@ -1,7 +1,7 @@
 'use strict';
 
 import { questionInt } from 'readline-sync';
-import { validateNumber } from '../utils/validation';
+import { validateNumber } from '../../utils/validation';
 
 class Node {
   constructor (data, next=null, prev=null) {
