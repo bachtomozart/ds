@@ -43,9 +43,9 @@ class BinaryTree {
     if(!node) {
       return null;
     } else {
-      this.preOrderTraversal(node.left);
+      this.inOrderTraversal(node.left);
       console.log(node.data);
-      this.preOrderTraversal(node.right);
+      this.inOrderTraversal(node.right);
     }
   }
 
@@ -53,9 +53,9 @@ class BinaryTree {
     if(!node) {
       return null;
     } else {
-      this.preOrderTraversal(node.right);
+      this.outOrderTraversal(node.right);
       console.log(node.data);
-      this.preOrderTraversal(node.left);
+      this.outOrderTraversal(node.left);
     }
   }
 
@@ -63,8 +63,8 @@ class BinaryTree {
     if(!node) {
       return null;
     } else {
-      this.preOrderTraversal(node.left);
-      this.preOrderTraversal(node.right);
+      this.postOrderTraversal(node.left);
+      this.postOrderTraversal(node.right);
       console.log(node.data);
     }
   }
