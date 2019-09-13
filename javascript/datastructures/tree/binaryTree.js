@@ -17,7 +17,7 @@ class BinaryTree {
     let node = new Node(data);
     if(this.root) {
       let parent = this.findFirstEligibleParent(this.root);
-      console.log('parent -> ' + parent);
+      // console.log('parent -> ' + JSON.stringify(parent));
       if(parent.left) {
         parent.right = node;
       } else {
@@ -26,20 +26,30 @@ class BinaryTree {
     } else {
       this.root = node;
     }
-    console.log('After add -> ' + JSON.stringify(this.root));
+    // console.log('After add -> ' + JSON.stringify(this.root));
   }
 
   delete(data) {
-    let parent = this.findParent(this.root, data);
-    console.log('parent -> ' + parent);
-    if(!parent) {
-      console.log('The given node could not be found in the tree');
-    } else if(parent.left.data === data) {
-      parent.left = null;
-      console.log('After delete -> ' + JSON.stringify(this.root));
+    if (data === this.root.data) {
+      const lastLeaf = this.getLastLeaf();
+      if(lastLeaf.parent.left.data === lastLeaf.leaf.data) {
+        lastLeaf.parent.left = null;
+      } else {
+        lastLeaf.parent.right = null;
+      }
+      this.root.data = lastLeaf.leaf.data;
     } else {
-      parent.right = null;
-      console.log('After delete -> ' + JSON.stringify(this.root));
+      let parent = this.findParent(this.root, data);
+      // console.log('parent -> ' + JSON.stringify(parent));
+      if(!parent) {
+        console.log('The given node could not be found in the tree');
+      } else if(parent.left.data === data) {
+        parent.left = null;
+        // console.log('After delete -> ' + JSON.stringify(this.root));
+      } else {
+        parent.right = null;
+        // console.log('After delete -> ' + JSON.stringify(this.root));
+      }
     }
   }
 
@@ -47,53 +57,75 @@ class BinaryTree {
     this.root = null;
   }
 
-  preOrderTraversal(node) {
+  printTree(traversal, startNode) {
+    let values = this.traverseTree(traversal, startNode).map((item) => item.data);
+    console.log(traversal + 'Traversal' + ' -> ' + JSON.stringify(values));
+  }
+
+  getLastLeaf() {
+    const startNode = this.root,
+    traversal = 'levelorder',
+    leaf = this.traverseTree(traversal, startNode).pop(),
+    parent = this.findParent(startNode, leaf.data);
+    return { leaf: leaf, parent: parent } ;
+  }
+
+  traverseTree(traversal, startNode) {
+    if(!startNode) startNode = this.root;
+    let values = [];
+    this[traversal + 'Traversal'](startNode, (node) => { 
+      values.push(node); 
+    });
+    return values;
+  }
+
+  //NLR
+  preorderTraversal(node, cb) {
     if(!node) {
-      // console.log('Tree is empty');
       return null;
     } else {
-      console.log(node.data);
-      this.preOrderTraversal(node.left);
-      this.preOrderTraversal(node.right);
+      cb(node);
+      this.preorderTraversal(node.left, cb);
+      this.preorderTraversal(node.right, cb);
     }
   }
 
-  inOrderTraversal(node) {
+  //LNR
+  inorderTraversal(node, cb) {
     if(!node) {
-      // console.log('Tree is empty');
       return null;
     } else {
-      this.inOrderTraversal(node.left);
-      console.log(node.data);
-      this.inOrderTraversal(node.right);
+      this.inorderTraversal(node.left, cb);
+      cb(node);
+      this.inorderTraversal(node.right, cb);
     }
   }
 
-  outOrderTraversal(node) {
+  //RNL
+  outorderTraversal(node, cb) {
     if(!node) {
-      // console.log('Tree is empty');
       return null;
     } else {
-      this.outOrderTraversal(node.right);
-      console.log(node.data);
-      this.outOrderTraversal(node.left);
+      this.outorderTraversal(node.right, cb);
+      cb(node);
+      this.outorderTraversal(node.left, cb);
     }
   }
 
-  postOrderTraversal(node) {
+  //LRN
+  postorderTraversal(node, cb) {
     if(!node) {
-      // console.log('Tree is empty');
       return null;
     } else {
-      this.postOrderTraversal(node.left);
-      this.postOrderTraversal(node.right);
-      console.log(node.data);
+      this.postorderTraversal(node.left, cb);
+      this.postorderTraversal(node.right, cb);
+      cb(node);
     }
   }
 
-  levelOrderTraversal(node) {
+  //BFS
+  levelorderTraversal(node, cb) {
     if(!node) {
-      // console.log('Tree is empty');
       return null;
     } else {
       let queue = [node];
@@ -101,13 +133,9 @@ class BinaryTree {
         let childrenQueue = [];
         for(let node of queue) {
           if(node) {          
-            // add left node
+            cb(node);
             childrenQueue.push(node.left);
-            // add right node
             childrenQueue.push(node.right);
-            // print node data
-            console.log(node.data);
-            // remove parent
           }
         }
         queue = childrenQueue;
@@ -117,13 +145,13 @@ class BinaryTree {
 
   findParent(node, data) {
     let queue = [node];
-    console.log('queue length -> ' + queue.length);
-    console.log(JSON.stringify(queue));
+    // console.log('queue length -> ' + queue.length);
+    // console.log(JSON.stringify(queue));
     while(queue.length > 0) {
       let childrenQueue = [];
       for(let node of queue) {
         if(node) {
-          console.log('findParent -> ' + JSON.stringify(node));
+          // console.log('findParent -> ' + JSON.stringify(node));
           if(node.left.data !== data) {
             childrenQueue.push(node.left);
           } else {
@@ -142,20 +170,22 @@ class BinaryTree {
 
   findFirstEligibleParent(node) {
     let queue = [node];
-    console.log('queue length -> ' + queue.length);
-    console.log(JSON.stringify(queue));
+    // console.log('queue length -> ' + queue.length);
+    // console.log(JSON.stringify(queue));
     while(queue.length > 0) {
       let childrenQueue = [];
       for(let node of queue) {
-        if(node.left) {
-          childrenQueue.push(node.left);
-        } else {
-          return node;
-        }
-        if(node.right) {
-          childrenQueue.push(node.right);
-        } else {
-          return node;
+        if(node) {
+          if(node.left) {
+            childrenQueue.push(node.left);
+          } else {
+            return node;
+          }
+          if(node.right) {
+            childrenQueue.push(node.right);
+          } else {
+            return node;
+          }
         }
       }
       queue = childrenQueue;
@@ -173,27 +203,20 @@ const demoBinaryTree = () => {
   tree.insert(5);
   tree.insert(6);
   tree.insert(7);
-  console.log('Pre Order Traversal');
-  tree.preOrderTraversal(tree.root);
-  console.log('In Order Traversal');
-  tree.inOrderTraversal(tree.root);
-  console.log('Out Order Traversal');
-  tree.outOrderTraversal(tree.root);
-  console.log('Post Order Traversal');
-  tree.postOrderTraversal(tree.root);
-  console.log('Level Order Traversal');
-  tree.levelOrderTraversal(tree.root);
-  tree.delete(6);
-  console.log('Pre Order Traversal');
-  tree.preOrderTraversal(tree.root);
-  console.log('In Order Traversal');
-  tree.inOrderTraversal(tree.root);
-  console.log('Out Order Traversal');
-  tree.outOrderTraversal(tree.root);
-  console.log('Post Order Traversal');
-  tree.postOrderTraversal(tree.root);
-  console.log('Level Order Traversal');
-  tree.levelOrderTraversal(tree.root);
+  tree.printTree('preorder');
+  tree.printTree('inorder');
+  tree.printTree('outorder');
+  tree.printTree('postorder');
+  tree.printTree('levelorder');
+  tree.delete(7);
+  console.log("Deleting => 7")
+  tree.delete(1);
+  console.log("Deleting => 1")
+  tree.printTree('preorder');
+  tree.printTree('inorder');
+  tree.printTree('outorder');
+  tree.printTree('postorder');
+  tree.printTree('levelorder');
 }
 
 // export { BinaryTree, demoBinaryTree }
