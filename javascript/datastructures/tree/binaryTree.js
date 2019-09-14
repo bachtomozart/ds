@@ -57,6 +57,18 @@ class BinaryTree {
     this.root = null;
   }
 
+  maxDepthOfTree() {
+    let maxDepth = this.maxDepthOfNode(this.root);
+    console.log(`max depth of tree is ${maxDepth}`);
+  }
+
+  maxDepthOfNode(node) {
+    if(!node) return 0;
+    let left = this.maxDepthOfNode(node.left)
+    let right = this.maxDepthOfNode(node.right);
+    return Math.max(left, right) + 1;
+  }
+
   printTree(traversal, startNode) {
     let values = this.traverseTree(traversal, startNode).map((item) => item.data);
     console.log(traversal + 'Traversal' + ' -> ' + JSON.stringify(values));
@@ -152,15 +164,12 @@ class BinaryTree {
       for(let node of queue) {
         if(node) {
           // console.log('findParent -> ' + JSON.stringify(node));
-          if(node.left.data !== data) {
+          if((node.left && node.left.data === data) ||
+            (node.right && node.right.data === data)) {
+            return node;
+          } else {
             childrenQueue.push(node.left);
-          } else {
-            return node;
-          }
-          if(node.right.data !== data) {
             childrenQueue.push(node.right);
-          } else {
-            return node;
           }
         }
       }
@@ -176,15 +185,11 @@ class BinaryTree {
       let childrenQueue = [];
       for(let node of queue) {
         if(node) {
-          if(node.left) {
+          if(!node.left || !node.right) {
+            return node;
+          } else {
             childrenQueue.push(node.left);
-          } else {
-            return node;
-          }
-          if(node.right) {
             childrenQueue.push(node.right);
-          } else {
-            return node;
           }
         }
       }
@@ -199,24 +204,33 @@ const demoBinaryTree = () => {
   tree.insert(1);
   tree.insert(2);
   tree.insert(3);
+  tree.maxDepthOfTree();
   tree.insert(4);
   tree.insert(5);
   tree.insert(6);
   tree.insert(7);
+  tree.insert(8);
+  tree.maxDepthOfTree();
   tree.printTree('preorder');
   tree.printTree('inorder');
   tree.printTree('outorder');
   tree.printTree('postorder');
   tree.printTree('levelorder');
   tree.delete(7);
-  console.log("Deleting => 7")
+  console.log("Deleted => 7")
+  tree.maxDepthOfTree();
+  tree.delete(8);
+  console.log("Deleted => 8")
+  tree.maxDepthOfTree();
   tree.delete(1);
-  console.log("Deleting => 1")
+  console.log("Deleted => 1")
+  tree.maxDepthOfTree();
   tree.printTree('preorder');
   tree.printTree('inorder');
   tree.printTree('outorder');
   tree.printTree('postorder');
   tree.printTree('levelorder');
+  tree.delete(10);
 }
 
 // export { BinaryTree, demoBinaryTree }
