@@ -8,6 +8,13 @@ class Node {
   }
 }
 
+class UnivalResult {
+  constructor(count, status) {
+    this.count = count;
+    this.status = status;
+  }
+}
+
 class BinaryTree {
   constructor() {
     this.root = null;
@@ -60,6 +67,25 @@ class BinaryTree {
   maxDepthOfTree() {
     let maxDepth = this.maxDepthOfNode(this.root);
     console.log(`max depth of tree is ${maxDepth}`);
+  }
+
+  findUnivalsInTree() {
+    let startNode = this.root;
+    let numOfUnivals = this.unival(startNode);
+    console.log(`The number of univals in the tree is ${numOfUnivals}`);
+  }
+
+  unival(node) {
+    if(!node || !node.left || !node.right) {
+      return 0;
+    } else {
+      if (node.data === node.left.data && 
+        node.data === node.right.data) {
+          return 1 + this.unival(node.left) + this.unival(node.right);
+      } else {
+        return this.unival(node.left) + this.unival(node.right);
+      }
+    }
   }
 
   maxDepthOfNode(node) {
@@ -233,6 +259,26 @@ const demoBinaryTree = () => {
   tree.delete(10);
 }
 
+const demoUnival = () => {
+  let tree = new BinaryTree();
+  tree.insert(1);
+  tree.insert(1);
+  tree.insert(1);
+  tree.insert(2);
+  tree.insert(3);
+  tree.insert(4);
+  tree.insert(5);
+  tree.insert(2);
+  tree.insert(2);
+  tree.insert(2); //
+  tree.insert(3);
+  tree.insert(4);
+  tree.insert(4);
+  tree.insert(5);
+  tree.insert(5);
+  tree.findUnivalsInTree();
+}
 // export { BinaryTree, demoBinaryTree }
 
-demoBinaryTree();
+// demoBinaryTree();
+demoUnival();
