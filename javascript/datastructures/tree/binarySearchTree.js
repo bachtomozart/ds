@@ -83,6 +83,32 @@ class BinarySearchTree {
       }
     }
   }
+
+  deleteNode(data) {
+    let startNode = this.root;
+    let searchNode = this.search(startNode, data);
+    if(!searchNode) {
+      console.log(`The given value ${data} could not be found`);
+    } else {
+      let parent = this.findParent(searchNode);
+      if(!searchNode.left && !searchNode.right) {
+        searchNode = null;
+      } else if (searchNode.left && searchNode.right) {
+        // find successor or predecessor
+        // recursively delete the successor/predecessor
+      } else if (searchNode.left && !searchNode.right) {
+        if(parent.left.data === searchNode.data) {
+          parent.left = searchNode.left;
+          searchNode = null;
+        }
+      } else if (!searchNode.left && searchNode.right) {
+        if(parent.right.data === searchNode.data) {
+          parent.right = searchNode.right;
+          searchNode = null;
+        }
+      }
+    }
+  }
 }
 
 const demoBinarySearchTree = () => {
