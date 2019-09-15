@@ -72,19 +72,62 @@ class BinaryTree {
   findUnivalsInTree() {
     let startNode = this.root;
     let numOfUnivals = this.unival(startNode);
-    console.log(`The number of univals in the tree is ${numOfUnivals}`);
+    console.log(`The number of univals in the tree is ${numOfUnivals.count}`);
   }
 
   unival(node) {
-    if(!node || !node.left || !node.right) {
-      return 0;
+    if(!node) return new UnivalResult(0, true);
+
+    let left = this.unival(node.left);
+    let right = this.unival(node.right);
+    let currentStatus = true;
+
+    if(!left.status || !right.status) {
+      currentStatus = false;
+    } else if (node.left && node.left.data !== node.data) {
+      currentStatus = false;
+    } else if (node.right && node.right.data !== node.data) {
+      currentStatus = false;
+    }
+
+    if(currentStatus) {
+      return new UnivalResult((1 + left.count + right.count), true);
     } else {
-      if (node.data === node.left.data && 
-        node.data === node.right.data) {
-          return 1 + this.unival(node.left) + this.unival(node.right);
+      return new UnivalResult(left.count + right.count, false);
+    }
+
+  }
+
+  findLeastCommonAncestor(val1, val2) {
+    let lcaVal = this.lca(this.root, val1, val2);
+    console.log(`The LCA for ${val1} and ${val2} is ${lcaVal}`)
+  }
+ 
+  lca(node, val1, val2) {
+    if(node) {
+      if(node.data === val1 || node.data === val2) {
+        return node.data;
       } else {
-        return this.unival(node.left) + this.unival(node.right);
+        let left = this.lca(node.left, val1, val2);
+        let right = this.lca(node.right, val1, val2);
+        if(left && !right) {
+          return left;
+        } else if(right && !left) {
+          return right;
+        } else if (left && right) {
+          if((left === val1 || left === val2) && 
+          (right === val1 || right === val2)) {
+            return node.data;
+          } else {
+            console.log('WTF is happening');
+            return node.data;
+          }
+        } else {
+          return null;
+        }
       }
+    } else {
+      return null;
     }
   }
 
@@ -263,22 +306,30 @@ const demoUnival = () => {
   let tree = new BinaryTree();
   tree.insert(1);
   tree.insert(1);
+  tree.insert(2);
+  tree.insert(2);
+  tree.insert(2);
+  tree.insert(2);
+  tree.insert(2);
+  tree.findUnivalsInTree();
+}
+
+const demoLCA = () => {
+  console.log('Demo LCA in Binary Tree');
+  let tree = new BinaryTree();
   tree.insert(1);
   tree.insert(2);
   tree.insert(3);
   tree.insert(4);
   tree.insert(5);
-  tree.insert(2);
-  tree.insert(2);
-  tree.insert(2); //
-  tree.insert(3);
-  tree.insert(4);
-  tree.insert(4);
-  tree.insert(5);
-  tree.insert(5);
-  tree.findUnivalsInTree();
+  tree.insert(6);
+  tree.insert(7);
+  tree.insert(8);
+  tree.findLeastCommonAncestor(7, 8);
 }
+
 // export { BinaryTree, demoBinaryTree }
 
 // demoBinaryTree();
-demoUnival();
+// demoUnival();
+demoLCA();
