@@ -64,8 +64,8 @@ class BinaryTree {
     this.root = null;
   }
 
-  maxDepthOfTree() {
-    let maxDepth = this.maxDepthOfNode(this.root);
+  depthOfTree() {
+    let maxDepth = this.depthOfNode(this.root);
     console.log(`max depth of tree is ${maxDepth}`);
   }
 
@@ -131,7 +131,7 @@ class BinaryTree {
     }
   }
 
-  maxDepthOfNode(node) {
+  depthOfNode(node) {
     if(!node) return 0;
     let left = this.maxDepthOfNode(node.left)
     let right = this.maxDepthOfNode(node.right);
@@ -287,13 +287,13 @@ const demoBinaryTree = () => {
   tree.printTree('levelorder');
   tree.delete(7);
   console.log("Deleted => 7")
-  tree.maxDepthOfTree();
+  tree.depthOfTree();
   tree.delete(8);
   console.log("Deleted => 8")
-  tree.maxDepthOfTree();
+  tree.depthOfTree();
   tree.delete(1);
   console.log("Deleted => 1")
-  tree.maxDepthOfTree();
+  tree.depthOfTree();
   tree.printTree('preorder');
   tree.printTree('inorder');
   tree.printTree('outorder');

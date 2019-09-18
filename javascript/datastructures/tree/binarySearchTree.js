@@ -166,6 +166,13 @@ class BinarySearchTree {
       }
     }
   }
+
+  heighOfNode(node) {
+    if(!node) return 0;
+    let left = this.heighOfNode(node.left);
+    let right = this.heighOfNode(node.right);
+    return Math.max(left, right) + 1;
+  }
 }
 
 const demoBinarySearchTree = () => {
