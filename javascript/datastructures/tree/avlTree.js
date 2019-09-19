@@ -5,7 +5,7 @@ class Node {
     this.data = data;
     this.left = null;
     this.right = null;
-    this.height = null;
+    this.balance = null;
   }
 }
 
@@ -43,7 +43,7 @@ class AVLTree {
     node.balance = this.calculateBalance(node);
 
     // balancing
-    if(node.balance > 1 || node.balance < -1) this.balanceTree(node);
+    this.balanceTree(node);
   }
 
   balanceTree(node) {
