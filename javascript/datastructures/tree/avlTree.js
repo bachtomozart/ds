@@ -5,12 +5,16 @@ class Node {
     this.data = data;
     this.left = null;
     this.right = null;
-    this.balance = null;
+    this.height = null;
   }
 }
 
 class AVLTree {
   constructor() {
+    this.root = null;
+  }
+
+  destroy() {
     this.root = null;
   }
 
@@ -39,13 +43,20 @@ class AVLTree {
     node.balance = this.calculateBalance(node);
 
     // balancing
+    if(node.balance > 1 || node.balance < -1) this.balanceTree(node);
+  }
+
+  balanceTree(node) {
     if(node.balance > 1) {
       let llBalance = this.calculateBalance(node.left.left);
       let lrBalance = this.calculateBalance(node.left.right);
       if(llBalance > lrBalance) {
         // LL Rotation
+        console.log(`Found LL Imbalance, Performing Right Rotate on ${node.data}`)
         this.rightRotate(node);
       } else {
+        console.log(`Found LR Imbalance, Performing Left Rotate on ${node.left.data}`)
+        console.log(`Found LR Imbalance, Performing Right Rotate on ${node.data}`)
         // LR Rotation
         this.leftRotate(node.left);
         this.rightRotate(node);
@@ -55,8 +66,11 @@ class AVLTree {
       let rlBalance = this.calculateBalance(node.right.left);
       if(rrBalance > rlBalance) {
         // RR Rotation
+        console.log(`Found RR Imbalance, Performing Left Rotate on ${node.data}`)
         this.leftRotate(node);
       } else {
+        console.log(`Found RL Imbalance, Performing Right Rotate on ${node.right.data}`)
+        console.log(`Found RL Imbalance, Performing Left Rotate on ${node.data}`)
         // RL Rotation
         this.rightRotate(node.right);
         this.leftRotate(node);
@@ -64,12 +78,36 @@ class AVLTree {
     }
   }
 
-  leftRotate(node) {
-
+  rightRotate(node) {
+    let parent = this.findParent(this.root, node.data);
+    let newRoot = node.left;
+    node.left = newRoot.right;
+    newRoot.right = node;
+    if (parent && parent.data > node.data) parent.left = newRoot;
+    if (parent && parent.data < node.data) parent.right = newRoot;
+    if(!parent) this.root = newRoot;
+    newRoot.balance = this.calculateBalance(newRoot);
+    node.balance = this.calculateBalance(node);
   }
 
-  rightRotate(node) {
+  leftRotate(node) {
+    let parent = this.findParent(this.root, node.data);
+    let newRoot = node.right;
+    node.right = newRoot.left;
+    newRoot.left = node;
+    if (parent && parent.data > node.data) parent.left = newRoot;
+    if (parent && parent.data < node.data) parent.right = newRoot;
+    if(!parent) this.root = newRoot;
+    newRoot.balance = this.calculateBalance(newRoot);
+    node.balance = this.calculateBalance(node);
+  }
 
+  findParent(node, data) {
+    if(!node) return null
+    if(node.left && node.left.data === data) return node;
+    if(node.right && node.right.data === data) return node;
+    if(data <= node.data) return this.findParent(node.left, data);
+    return this.findParent(node.right, data);
   }
 
   calculateBalance(node) {
@@ -86,12 +124,28 @@ class AVLTree {
 
 }
 
-const demo = () => {
+const demoInsert = () => {
   let tree = new AVLTree();
   tree.insert(tree.root, 30);
   tree.insert(tree.root, 20);
   tree.insert(tree.root, 10);
   console.log(JSON.stringify(tree.root));
+  tree.destroy();
+  tree.insert(tree.root, 30);
+  tree.insert(tree.root, 20);
+  tree.insert(tree.root, 25);
+  console.log(JSON.stringify(tree.root));
+  tree.destroy();
+  tree.insert(tree.root, 30);
+  tree.insert(tree.root, 40);
+  tree.insert(tree.root, 50);
+  console.log(JSON.stringify(tree.root));
+  tree.destroy();
+  tree.insert(tree.root, 30);
+  tree.insert(tree.root, 40);
+  tree.insert(tree.root, 35);
+  console.log(JSON.stringify(tree.root));
+  tree.destroy();
 }
 
-demo();
+demoInsert();
