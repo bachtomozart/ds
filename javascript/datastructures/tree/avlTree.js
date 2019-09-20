@@ -18,6 +18,18 @@ class AVLTree {
     this.root = null;
   }
 
+  findFirstParent(node, data) {
+    if(!node && !this.root) return this.root;
+    if(!node) return node;
+    if(data <= node.data) {
+      if(!node.left) return node;
+      return this.findFirstParent(node.left, data);
+    } else {
+      if(!node.right) return node;
+      return this.findFirstParent(node.right, data);
+    }
+  }
+
   insert(node, data) {
     // insert node
     if(!this.root) {
@@ -44,6 +56,41 @@ class AVLTree {
 
     // balancing
     this.balanceTree(node);
+  }
+
+  insertNode(node, data) {
+    let newNode = new Node(data);
+    let parent = this.findFirstParent(node, data);
+    if(data <= parent.data) {
+      parent.left = newNode;
+      parent.left.balance = this.calculateBalance(parent.left);
+    } else {
+      parent.right = newNode;
+      parent.right.balance = this.calculateBalance(parent.right);
+    }
+    parent.balance = this.calculateBalance(parent);
+    this.balanceTree(parent);
+  }
+
+  insert2(data) {
+    if(!this.root) {
+      this.root = new Node(data);
+      this.root.balance = this.calculateBalance(this.root);
+    } else {
+      this.insertNode(this.root, data);
+    }
+  }
+
+  delete(node, data) {
+    if(!node) return null;
+    let parent = this.findParent(node, data);
+    if(parent.left.data === data) {
+      parent.left = null;
+    } else {
+      parent.right = null;
+    }
+    parent.balance = this.calculateBalance(parent);
+    this.balanceTree(parent);
   }
 
   balanceTree(node) {
@@ -148,4 +195,24 @@ const demoInsert = () => {
   tree.destroy();
 }
 
-demoInsert();
+const demoDelete = () => {
+  let tree = new AVLTree();
+  tree.insert(tree.root, 30);
+  tree.insert(tree.root, 20);
+  tree.insert(tree.root, 10);
+  tree.insert(tree.root, 15);
+  console.log(JSON.stringify(tree.root));
+  tree.delete(tree.root, 30);
+  console.log(JSON.stringify(tree.root));
+}
+
+const demoInsert2 = () => {
+  let tree = new AVLTree();
+  tree.insert(tree.root, 30);
+  tree.insert(tree.root, 20);
+  tree.insert(tree.root, 10);
+  console.log(JSON.stringify(tree.root));
+}
+// demoInsert();
+// demoDelete();
+demoInsert2();
