@@ -13,19 +13,15 @@ class Node {
     this.endOfWord = endOfWord;
   }
 
-  getData(data) {
-    this.map.get(data);
+  get(data) {
+    return this.map.get(data);
   }
 
-  addData(data, next) {
+  add(data, next = null) {
     this.map.set(data, next);
   }
 
-  removeData(data) {
-    this.map.delete(data);
-  }
-
-  hasData(data) {
+  has(data) {
     return this.map.has(data);
   }
 }
@@ -36,53 +32,53 @@ class Trie {
   }
 
   addWord(word) {
-    this.insert(this.root, word.split(''));
+    if(!this.root) {
+      this.root = this.buildTrie(word.split(''));
+    } else {
+      this.checkAndBuildTrie(this.root, word);
+    }
+    console.log(JSON.stringify(this.root));
   }
 
-  insert(node, wordArray) {
-    if(!node) {
-      if(!this.root) {
-        this.root = new Node(wordArray[0]);
-        this.insert(this.root, wordArray);
+  buildEntireTrie(word) {
+    let wordArray = word.split(''), 
+      prev = new Node(wordArray.shift()), 
+      root = prev, 
+      curr = prev,
+      status = true;
+    while(status) {
+      let diff = word.length - wordArray.length,
+        prev = word.substr(diff-1, 1);
+      if(wordArray[0]) {
+        curr = new Node(wordArray.shift());
+      } else {
+        curr = new Node(null, null, true);
+        status = false;
+      }
+      prev.map.set(prev, curr);
+      prev = curr;
+    }
+    return root;
+  }
+
+  buildTrie(wordArray) {
+    return wordArray[0] ? new Node(wordArray.shift(), this.buildTrie(wordArray)) : new Node(null, null, true);
+  }
+
+  checkAndBuild(currNode, wordArray) {
+    if(wordArray[0]) {
+      if(currNode.has(wordArray[0])) {
+        let prev = wordArray.shift()
+        return this.checkAndBuild(currNode.get(prev), wordArray);
+      } else {
+        currNode.add(wordArray.shift(), this.buildTrie(wordArray))
+        return currNode;
       }
     } else {
-      // let diff = word.length - wordArray.length > 0 ? diff-1 : 0;
-      // let previousChar = word.substr(diff, 1);
-      let currentChar = JSON.parse(JSON.stringify(wordArray[0]));
-      if (!currentChar) return new Node(null, null, true);
-      if(node.map.has(currentChar) ) {
-        wordArray.shift();
-        if(!node.map.get(currentChar)) {
-          node.map.set(currentChar, new Node(wordArray.shift()));
-        }
-        this.insert(node.map.get(currentChar), wordArray);
-      } else {
-        node.map.set(wordArray.shift(), null);
-        this.insert(node.map.get(currentChar), wordArray);
-      }
+      return new Node(null, null, true);
     }
   }
 
-  insertV1(startNode, word, wordArray) {
-    if(!startNode) {
-      if(!this.root) {
-        this.root = new Node(wordArray.shift());
-        this.insert(startNode, word, wordArray);
-      } else {
-        return null;
-      }
-    } else {
-      let diff = Number(word.length - wordArray.length);
-      let previousChar = word.substr(diff-1, 1);
-      let currentChar = wordArray[0];
-      if(startNode.map.has(previousChar)) {
-        if(previousChar === currentChar) wordArray.shift();
-        this.insert(startNode.map.get(previousChar), word, wordArray);
-      } else {
-        startNode
-      }
-    }
-  }
 }
 
 const demoTrie = () => {
