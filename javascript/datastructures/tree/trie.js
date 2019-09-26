@@ -24,6 +24,18 @@ class Node {
   has(data) {
     return this.map.has(data);
   }
+
+  setIsEnd() {
+    this.endOfWord = true;
+  }
+
+  isEnd() {
+    return this.endOfWord;
+  }
+
+  isNotEmpty() {
+    return this.map.size > 0;
+  }
 }
 
 class Trie {
@@ -35,55 +47,87 @@ class Trie {
     if(!this.root) {
       this.root = this.buildTrie(word.split(''));
     } else {
-      this.checkAndBuildTrie(this.root, word);
+      this.checkAndBuildTrie(this.root, word.split(''));
     }
-    console.log(JSON.stringify(this.root));
-  }
-
-  buildEntireTrie(word) {
-    let wordArray = word.split(''), 
-      prev = new Node(wordArray.shift()), 
-      root = prev, 
-      curr = prev,
-      status = true;
-    while(status) {
-      let diff = word.length - wordArray.length,
-        prev = word.substr(diff-1, 1);
-      if(wordArray[0]) {
-        curr = new Node(wordArray.shift());
-      } else {
-        curr = new Node(null, null, true);
-        status = false;
-      }
-      prev.map.set(prev, curr);
-      prev = curr;
-    }
-    return root;
   }
 
   buildTrie(wordArray) {
     return wordArray[0] ? new Node(wordArray.shift(), this.buildTrie(wordArray)) : new Node(null, null, true);
   }
 
-  checkAndBuild(currNode, wordArray) {
-    if(wordArray[0]) {
+  checkAndBuildTrie(currNode, wordArray) {
+    if(!wordArray[0]) {
+      if(currNode.isNotEmpty()) {
+        currNode.setIsEnd();
+        return currNode;
+      } else {
+        return new Node(null, null, true);
+      }
+    } else {
       if(currNode.has(wordArray[0])) {
         let prev = wordArray.shift()
-        return this.checkAndBuild(currNode.get(prev), wordArray);
+        return this.checkAndBuildTrie(currNode.get(prev), wordArray);
       } else {
         currNode.add(wordArray.shift(), this.buildTrie(wordArray))
         return currNode;
       }
-    } else {
-      return new Node(null, null, true);
     }
   }
 
+  searchTrie(currNode, wordArray) {
+    if(!currNode) return null;
+    if(wordArray[0]) {
+      let currChar = wordArray.shift();
+      if(currNode.has(currChar)) {
+        return this.searchTrie(currNode.get(currChar), wordArray);
+      } else {
+        return null;
+      }
+    } else {
+      if(currNode.isNotEmpty()) {
+        return this.printTrie(currNode);
+      } else {
+        return null;
+      }
+    }
+  }
+
+  printTrie(currNode) {
+    if(!currNode) return [null];
+    let result = [];
+    if(currNode.isEnd()) result.push('');
+    if(!currNode.isNotEmpty()) return result;
+    for(let [key,value] of currNode.map.entries()) {
+      let values = this.printTrie(value);
+      let transformedValues = values.map((item) => key + item);
+      result.push(...transformedValues);
+    }
+    return result;
+  }
+  printAll() {
+    let all = this.printTrie(this.root);
+    console.log('all words - ' + JSON.stringify(all));
+  }
+
+  findPossibilities(word) {
+    let possibilities = this.searchTrie(this.root, word.split(''));
+    console.log('possibilities for \'' + word + '\' - ' + JSON.stringify(possibilities));
+  }
 }
 
 const demoTrie = () => {
   let trie = new Trie();
   trie.addWord('air');
+  trie.addWord('aisle');
+  trie.addWord('aide');
+  trie.addWord('aid');
+  trie.addWord('aides');
+  trie.addWord('ailment');
+  trie.addWord('ailing');
+  trie.printAll();
+  trie.findPossibilities('ai');
+  trie.findPossibilities('aid');
+  trie.findPossibilities('aero');
 }
 
 demoTrie();
