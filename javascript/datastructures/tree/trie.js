@@ -25,8 +25,16 @@ class Node {
     return this.map.has(data);
   }
 
+  delete(data) {
+    this.map.delete(data);
+  }
+
   setIsEnd() {
     this.endOfWord = true;
+  }
+
+  setIsNotEnd() {
+    this.endOfWord = false;
   }
 
   isEnd() {
@@ -104,6 +112,7 @@ class Trie {
     }
     return result;
   }
+
   printAll() {
     let all = this.printTrie(this.root);
     console.log('all words - ' + JSON.stringify(all));
@@ -113,6 +122,44 @@ class Trie {
     let possibilities = this.searchTrie(this.root, word.split(''));
     console.log('possibilities for \'' + word + '\' - ' + JSON.stringify(possibilities));
   }
+
+  deleteTrie(currNode, wordArray) {
+    if(!currNode) return null;
+    if(!wordArray[0]) return null;
+    let currChar = wordArray.shift();
+    if(currNode.has(currChar)) {
+      if(wordArray[0]) {
+        let deleteCurr = this.deleteTrie(currNode.get(currChar), wordArray);
+        if(deleteCurr) {
+          currNode.delete(currChar);
+          if(currNode.isNotEmpty()) {
+            return false;
+          } else {
+            return true;
+          }
+        } else {
+          return false;
+        }
+      } else {
+        let next = currNode.get(currChar);
+        if(next.isNotEmpty()) {
+          if(currNode.isEnd()) currNode.setIsNotEnd() 
+          return false;
+        } else {
+          currNode.delete(currChar);
+          return true;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
+  deleteWord(word) {
+    console.log(`Deleting ${word} - `);
+    this.deleteTrie(this.root, word.split(''));
+  }
+
 }
 
 const demoTrie = () => {
@@ -128,6 +175,9 @@ const demoTrie = () => {
   trie.findPossibilities('ai');
   trie.findPossibilities('aid');
   trie.findPossibilities('aero');
+  trie.deleteWord('aisle');
+  trie.deleteWord('aid');
+  trie.printAll();
 }
 
 demoTrie();
