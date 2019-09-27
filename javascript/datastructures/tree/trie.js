@@ -141,9 +141,9 @@ class Trie {
           return false;
         }
       } else {
-        let next = currNode.get(currChar);
-        if(next.isNotEmpty()) {
-          if(currNode.isEnd()) currNode.setIsNotEnd() 
+        let nextNode = currNode.get(currChar);
+        if(nextNode.isNotEmpty()) {
+          if(nextNode.isEnd()) nextNode.setIsNotEnd(); 
           return false;
         } else {
           currNode.delete(currChar);
