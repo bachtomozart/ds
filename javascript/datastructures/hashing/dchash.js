@@ -58,13 +58,16 @@ class LinkedList {
 
 class DirectChainHash {
 
-  constructor(size = 4294967295) {
+  constructor(size = 4294967295, isDemo = false) {
     this.array = new Array(Number(size));
     this.hasher = new Hash();
+    this.isDemo = isDemo;
+    this.size = size;
   }
 
   add(data) {
-    const hash = this.hasher.murmurHash(data);
+    let hash = this.hasher.murmurHash(data);
+    if(this.isDemo) hash = hash % this.size;
     if(!this.array[hash]) {
       this.array[hash] = new LinkedList(data);
     } else {
@@ -73,7 +76,8 @@ class DirectChainHash {
   }
 
   delete(data) {
-    const hash = this.hasher.murmurHash(data);
+    let hash = this.hasher.murmurHash(data);
+    if(this.isDemo) hash = hash % this.size;
     if(!this.array[hash]) {
       console.log(`${data} not found`);
     } else {
@@ -87,7 +91,8 @@ class DirectChainHash {
   }
 
   has(data) {
-    const hash = this.hasher.murmurHash(data);
+    let hash = this.hasher.murmurHash(data);
+    if(this.isDemo) hash = hash % this.size;
     if(!this.array[hash]) {
       console.log(`${data} was not found`);
     } else {
