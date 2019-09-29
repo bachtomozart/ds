@@ -12,21 +12,24 @@ class DoubleHashingHash {
   }
 
   add(data) {
-    let hash = this.hasher.murmurHash(data) % 10;
-    if(this.isDemo) hash = hash % this.size;
+    const hash = this.generatehash(data);
 
   }
 
   delete(data) {
-    let hash = this.hasher.murmurHash(data) % 10;
-    if(this.isDemo) hash = hash % this.size;
+    const hash = this.generatehash(data);
 
   }
 
   has(data) {
+    const hash = this.generatehash(data);
+
+  }
+
+  generateHash(data) {
     let hash = this.hasher.murmurHash(data) % 10;
     if(this.isDemo) hash = hash % this.size;
-
+    return hash;
   }
 
 }
