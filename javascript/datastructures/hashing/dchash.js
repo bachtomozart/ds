@@ -1,6 +1,6 @@
 'use strict'
 
-const hashLibrary = require('./hash');
+const Hash = require('./hash');
 
 class Node {
   constructor(data) {
@@ -58,13 +58,13 @@ class LinkedList {
 
 class DirectChainHash {
 
-  constructor(size) {
+  constructor(size = 4294967295) {
     this.array = new Array(Number(size));
-    this.hashModule = new hashLibrary();
+    this.hasher = new Hash();
   }
 
   add(data) {
-    const hash = this.hashModule.murmurHash(data);
+    const hash = this.hasher.murmurHash(data);
     if(!this.array[hash]) {
       this.array[hash] = new LinkedList(data);
     } else {
@@ -73,7 +73,7 @@ class DirectChainHash {
   }
 
   delete(data) {
-    const hash = this.hashModule.murmurHash(data);
+    const hash = this.hasher.murmurHash(data);
     if(!this.array[hash]) {
       console.log(`${data} not found`);
     } else {
@@ -87,7 +87,7 @@ class DirectChainHash {
   }
 
   has(data) {
-    const hash = this.hashModule.murmurHash(data);
+    const hash = this.hasher.murmurHash(data);
     if(!this.array[hash]) {
       console.log(`${data} was not found`);
     } else {
@@ -101,15 +101,13 @@ class DirectChainHash {
   }
 }
 
-const demoDCHash = () => {
-  let dcHash = new DirectChainHash(4294967295);
-  dcHash.add("Govindarajan");
-  dcHash.add("Panneerselvam");
-  dcHash.add("Valarmathi");
-  dcHash.add("Janaki");
-  dcHash.add("Swetha");
-  dcHash.add("Abhinav");
-  dcHash.has("Govindarajan");
-};
-
-demoDCHash();
+(() => {
+  let hash = new DirectChainHash();
+  hash.add("Govindarajan");
+  hash.add("Panneerselvam");
+  hash.add("Valarmathi");
+  hash.add("Janaki");
+  hash.add("Swetha");
+  hash.add("Abhinav");
+  hash.has("Govindarajan");
+})();
