@@ -1,5 +1,7 @@
 'use strict'
 
+const ds = require('./common');
+
 class UndirectedGraph {
   constructor(numberOfVertices) {
     this.numberOfVertices = numberOfVertices;
@@ -18,16 +20,37 @@ class UndirectedGraph {
 
   printGraph() {
     for(let vertex of this.adjacencyList.keys()) {
-      console.log(vertex + ' -> ' + this.adjacencyList.get(vertex).reduce((acc, item) => acc + " - " + item));
+      console.log(vertex + ' -> ' + this.adjacencyList
+        .get(vertex)
+        .reduce((acc, item) => acc + " - " + item)
+      );
     }
   }
 
-  bfs() {
-
+  bfs(startVertex) {
+    let queue = [startVertex];
+    let visited = new Set();
+    while(queue.length > 0) {
+      let currentVertex = queue.shift();
+      if(!visited.has(currentVertex)) {
+        visited.add(currentVertex);
+        this.adjacencyList.get(currentVertex).forEach((item) => queue.push(item));
+      }
+    }
+    console.log('BFS - ' + [...visited].reduce((acc, item) => acc + " -> " + item));
   }
 
-  dfs() {
-
+  dfs(startVertex) {
+    let stack = [startVertex];
+    let visited = new Set();
+    while(stack.length > 0) {
+      let currentVertex = stack.pop();
+      if(!visited.has(currentVertex)) {
+        visited.add(currentVertex);
+        this.adjacencyList.get(currentVertex).forEach((item) => stack.push(item));
+      }
+    }
+    console.log('DFS - ' + [...visited].reduce((acc, item) => acc + " -> " + item));
   }
 }
 
@@ -43,6 +66,8 @@ const demo = () => {
   graph.addEdge('B', 'C');
   graph.addEdge('D', 'C');
   graph.printGraph();
+  graph.bfs('A');
+  graph.dfs('A');
 }
 
 demo();
