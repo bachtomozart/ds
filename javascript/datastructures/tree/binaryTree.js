@@ -71,7 +71,7 @@ class BinaryTree {
 
   findUnivalsInTree() {
     let startNode = this.root;
-    let numOfUnivals = this.unival(startNode);
+    let numOfUnivals = this.findUnival(startNode);
     console.log(`The number of univals in the tree is ${numOfUnivals.count}`);
   }
 
@@ -98,8 +98,31 @@ class BinaryTree {
 
   }
 
+  findUnival(node) {
+    if(!node) return new UnivalResult(0, true);
+    let leftUnivalResult = this.findUnival(node.left),
+      rightUnivalResult = this.findUnival(node.right);
+
+    let leftCheck = false, rightCheck = false;
+    if((node.left && node.left.data === node.data) || 
+      (!node.left && leftUnivalResult.count === 0 && leftUnivalResult.status)) {
+      leftCheck = true;
+    }
+
+    if((node.right && node.right.data === node.data) || 
+      (!node.right && rightUnivalResult.count === 0 && rightUnivalResult.status)) {
+      rightCheck = true;
+    }
+    
+    if (leftCheck && rightCheck) {
+      return new UnivalResult(1 + leftUnivalResult.count + rightUnivalResult.count, true);
+    } else {
+      return new UnivalResult(leftUnivalResult.count + rightUnivalResult.count, false);
+    }
+  }
+
   findLeastCommonAncestor(val1, val2) {
-    let lcaVal = this.lca(this.root, val1, val2);
+    let lcaVal = this.findLca(this.root, val1, val2);
     console.log(`The LCA for ${val1} and ${val2} is ${lcaVal}`)
   }
  
@@ -126,6 +149,23 @@ class BinaryTree {
           return null;
         }
       }
+    } else {
+      return null;
+    }
+  }
+
+  findLca(node, val1, val2) {
+    if(!node) return null;
+    if(node.data === val1 || node.data === val2) return node.data;
+    let left = this.findLca(node.left, val1, val2),
+      right = this.findLca(node.right, val1, val2);
+    
+    if(left && !right) {
+      return left;
+    } else if (!left && right) {
+      return right;
+    } else if (left && right) {
+      return node.data;
     } else {
       return null;
     }
