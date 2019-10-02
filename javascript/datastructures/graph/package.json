@@ -1,0 +1,19 @@
+{
+  "name": "graph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "graph.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "graph",
+    "bfs",
+    "dfs"
+  ],
+  "author": "Govindarajan Panneerselvam",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
