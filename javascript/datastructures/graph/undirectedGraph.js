@@ -68,6 +68,5 @@ const demo = () => {
   graph.printGraph();
   graph.bfs('A');
   graph.dfs('A');
-}
-
+};
 demo();
