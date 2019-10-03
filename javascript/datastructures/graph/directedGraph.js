@@ -7,16 +7,34 @@ class DirectedGraph {
   }
 
   addVertex(vertex) {
-    this.adjacencyList.add(vertex, new Array());
+    this.adjacencyList.set(vertex, new Array());
   }
 
   addEdge(startVertex, destinationVertex) {
     this.adjacencyList.get(startVertex).push(destinationVertex);
   }
 
-  topologicalSort(startVertex) {
-
+  topologicalSort() {
+    let stack = [];
+    let visited = new Set();
+    let vertices = this.adjacencyList.keys();
+    for(let vertex of vertices) {
+      this.topologicalVisit(vertex, stack, visited);
+    }
+    console.log('Topological Sort - ' + stack.reduceRight((acc, item) => acc + " -> " + item));
   }
+
+  topologicalVisit(vertex, stack, visited) {
+    let neighbours = this.adjacencyList.get(vertex);
+    for(let i=0;i<neighbours.length;i++) {
+      this.topologicalVisit(neighbours[i], stack, visited);
+    }
+    if(!visited.has(vertex)) {
+      visited.add(vertex);
+      stack.push(vertex);
+    }
+  }
+
 }
 
 const demo = () => {
