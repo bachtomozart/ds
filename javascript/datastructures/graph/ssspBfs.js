@@ -5,7 +5,7 @@ const common = require('./common'),
   Graph = common.Graph,
   prepGraph = common.prepGraph;
 
-class ssspBFSGraph extends Graph {
+class ssspBFS extends Graph {
   constructor(numberOfVertices) {
     super(numberOfVertices);
     this.parents = null;
@@ -34,7 +34,7 @@ class ssspBFSGraph extends Graph {
 
   ssspBetween(startVertex, endVertex) {
     if(!this.parents) {
-      this.findSSSPByBFS(startVertex, null);
+      this.findSSSPByBFS(new Vertex(startVertex), null);
     }
     if(!this.parents.has(endVertex)) {
       console.log(`${endVertex} could not be reached from ${startVertex}`);
@@ -52,10 +52,9 @@ class ssspBFSGraph extends Graph {
 }
 
 const demo = () => {
-  let graph = new ssspBFSGraph(10);
+  let graph = new ssspBFS(10);
   prepGraph(graph);
-  let startVertex = new Vertex('A');
-  graph.findSSSPByBFS(startVertex, startVertex.parent);
+  graph.findSSSPByBFS(new Vertex('A'), null);
   graph.ssspBetween('A', 'G');
 };
 

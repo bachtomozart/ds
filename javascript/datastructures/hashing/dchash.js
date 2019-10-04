@@ -103,7 +103,7 @@ class DirectChainHash {
   }
 
   generateHash(data) {
-    let hash = this.hasher.murmurHash(data) % 10;
+    let hash = this.hasher.murmurHash(data);
     if(this.isDemo) hash = hash % this.size;
     return hash;
   }
