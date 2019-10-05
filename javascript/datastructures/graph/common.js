@@ -83,13 +83,6 @@ module.exports.Vertex = Vertex;
 module.exports.Graph = Graph;
 module.exports.prepGraph = prepGraph;
 
-class SSSPNode {
-  constructor(data, distance) {
-    this.data = data;
-    this.distance = distance;
-  }
-}
-
 class MinHeap {
   constructor(length) {
     this.last = 1;
@@ -116,7 +109,7 @@ class MinHeap {
     if(child > 0) {
       let parent = this.parent(child),
         parentData = this.array[parent];
-      if(parentData.distance > childData.distance) {
+      if(parentData.weight > childData.weight) {
         this.array[child] = parentData;
         this.array[parent] = childData;
         this.balanceHeapBottomUp(parent, this.array[parent]);
@@ -131,22 +124,22 @@ class MinHeap {
         rightChild = this.right(parent),
         rightChildData = this.array[rightChild];
       if(!leftChildData && rightChildData) {
-        if(parentData.distance > rightChildData.distance) {
+        if(parentData.weight > rightChildData.weight) {
           this.array[rightChild] = parentData;
           this.array[parent] = rightChildData;
           this.balanceHeapTopDown(rightChild, this.array[rightChild]);
         }
       } else if (!rightChildData && leftChildData) {
-        if(parentData.distance > leftChildData.distance) {
+        if(parentData.weight > leftChildData.weight) {
           this.array[leftChild] = parentData;
           this.array[parent] = leftChildData;
           this.balanceHeapTopDown(leftChild, this.array[leftChild]);
         }
       } else if(leftChildData && 
         rightChildData &&
-        (parentData.distance > leftChildData.distance || 
-        parentData.distance > rightChildData.distance)) {
-        if(leftChildData.distance < rightChildData.distance) {
+        (parentData.weight > leftChildData.weight || 
+        parentData.weight > rightChildData.weight)) {
+        if(leftChildData.weight < rightChildData.weight) {
           this.array[leftChild] = parentData;
           this.array[parent] = leftChildData;
           this.balanceHeapTopDown(leftChild, this.array[leftChild]);
@@ -165,27 +158,15 @@ class MinHeap {
     this.array[1] = this.array[this.last-1];
     this.array[this.last-1] = null;
     this.last--;
-    console.log(`EXTRACTED BF -> last: ${this.last} - array: ${JSON.stringify(this.array)}`);
+    console.log(`EXTRACTED '${result.data}' BF -> last: ${this.last} - array: ${JSON.stringify(this.array)}`);
     this.balanceHeapTopDown(1, this.array[1]);
-    console.log(`EXTRACTED AF -> last: ${this.last} - array: ${JSON.stringify(this.array)}`);
+    console.log(`EXTRACTED '${result.data}' AF -> last: ${this.last} - array: ${JSON.stringify(this.array)}`);
     return result;
   }
 
-  peak() {
-    console.log(`Peaking -> ${JSON.stringify(this.array[1])}`);
+  peek() {
+    console.log(`Peeking -> ${JSON.stringify(this.array[1])}`);
     return this.array[1];
-  }
-
-  updateWeight(data, distance) {
-    for(let i = 1; i < this.array.length; i++) {
-      if(this.array[i].data === data) {
-        this.array[i].distance = distance;
-        console.log(`UPDATED BF -> data - ${distance} - array: ${JSON.stringify(this.array)}`);
-        this.balanceHeapBottomUp(i, this.array[i]);
-        console.log(`UPDATED AF -> data - ${distance} - array: ${JSON.stringify(this.array)}`);
-        break;
-      }
-    }
   }
 
   parent(pos) {
@@ -213,4 +194,3 @@ class MinHeap {
 }
 
 module.exports.MinHeap = MinHeap;
-module.exports.SSSPNode = SSSPNode;
