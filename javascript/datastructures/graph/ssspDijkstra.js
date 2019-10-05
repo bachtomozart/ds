@@ -3,7 +3,8 @@
 const common = require('./common'),
   Graph = common.Graph,
   Vertex = common.Vertex,
-  MinHeap = common.MinHeap;
+  MinHeap = common.MinHeap,
+  prepWeightedGraph = common.prepWeightedGraph;
 
 class ssspDijkstra extends Graph {
 
@@ -81,19 +82,7 @@ class ssspDijkstra extends Graph {
 
 const demo = () => {
   let graph = new ssspDijkstra(10);
-  graph.addVertex('A');
-  graph.addVertex('B');
-  graph.addVertex('C');
-  graph.addVertex('D');
-  graph.addVertex('E');
-  graph.addEdge('E', 'B', 4);
-  graph.addEdge('E', 'D', 2);
-  graph.addEdge('B', 'A', 3);
-  graph.addEdge('D', 'B', 1);
-  graph.addEdge('D', 'C', 1);
-  graph.addEdge('A', 'C', 6);
-  graph.addEdge('A', 'D', 6);
-  graph.addEdge('C', 'D', 2);
+  prepWeightedGraph(graph);
   graph.findSSSP('E');
   graph.ssspBetween('E', 'A');
   graph.ssspBetween('E', 'B');
