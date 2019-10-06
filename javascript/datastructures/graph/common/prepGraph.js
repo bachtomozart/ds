@@ -59,6 +59,19 @@ const prepGraph = (graph, graphType) => {
     graph.addEdge('C', 'A', 4);
     graph.addEdge('D', 'B', 2);
     graph.addEdge('D', 'C', 9);
+  } else if (graphType === 'undirectedWeighted') {
+    graph.addVertex('A');
+    graph.addVertex('B');
+    graph.addVertex('C');
+    graph.addVertex('D');
+    graph.addVertex('E');
+    graph.addEdge('A', 'B', 15);
+    graph.addEdge('A', 'C', 20);
+    graph.addEdge('B', 'C', 13);
+    graph.addEdge('B', 'D', 5);
+    graph.addEdge('C', 'D', 10);
+    graph.addEdge('C', 'E', 6);
+    graph.addEdge('D', 'E', 8);
   }
 };
 

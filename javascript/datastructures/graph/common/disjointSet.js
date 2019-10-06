@@ -2,40 +2,6 @@
 
 const DisjointNode = require('./disjointNode');
 
-class OldDisjointSet {
-  constructor(size) {
-    this.size = size;
-    this.map = new Map();
-  }
-
-  makeSet(items) {
-    for(let item of items) {
-      let set = new Set();
-      set.add(item);
-      this.map.set(item, set)
-    }
-  }
-
-  union(item1, item2) {
-    let set1 = this.map.get(item1);
-    let set2 = this.map.get(item2);
-    if(set1.size >= set2.size) {
-      set1.add(item2);
-      this.map.delete(item2);
-    } else {
-      set2.add(item1);
-      this.map.delete(item1);
-    }
-  }
-
-  findSet(item) {
-    for(let key of this.map.keys()) {
-      if(this.map.get(key).has(item)) return key;
-    }
-  }
-
-}
-
 class DisjointSet {
   constructor() {
     this.map = new Map();
@@ -60,6 +26,7 @@ class DisjointSet {
       size1 = set1.set.size;
     } else if (size2 === 0) {
       set2 = this.map.get(set2.belongsTo);
+      item2 = set2.belongsTo;
       size2 = set2.set.size;
     } 
     if(size1 >= size2) {
@@ -83,26 +50,27 @@ class DisjointSet {
     return result;
   }
 
-  amalgamate(amalgamator, amalgamatee) {
-      this.map.get(amalgamatee).nowBelongsTo(amalgamator);
-      this.map.get(amalgamatee).removeFromSet(amalgamatee);
-      this.map.get(amalgamator).addToSet(amalgamatee);
+  amalgamate(absorber, toBeAbsorbed) {
+    let toBeAbsorbedSet = this.map.get(toBeAbsorbed).set;
+    for(let tobeAbsorbedItem of toBeAbsorbedSet) {
+      this.map.get(tobeAbsorbedItem).nowBelongsTo(absorber);
+      this.map.get(tobeAbsorbedItem).removeFromSet(tobeAbsorbedItem);
+      this.map.get(absorber).addToSet(tobeAbsorbedItem);
+    }
   }
 
   printSet() {
     console.log(`DisjointSet -> ${JSON.stringify([...this.map])}`);
   }
 }
-
 const demo = () => {
-  // let set = new DisjointSet(10);
-  let set = new DisjointSet();
+  let set = new DisjointSet(10);
   set.makeSet(['A', 'B', 'C', 'D', 'E']);
   set.union('A', 'B');
-  set.union('A', 'E');
-  let eSet = set.findSet('E');
-  set.getSet(eSet);
-  set.printSet();
+  set.union('C', 'D');
+  set.union('A', 'D');
+  set.findSet('E');
+  set.findSet('C');
 };
 
 demo();
