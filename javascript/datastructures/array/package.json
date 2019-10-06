@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/imgovind/dsalg#readme",
   "dependencies": {
-    "readline-sync": "^1.4.10"
+    "esm": "^3.2.25"
   }
 }
