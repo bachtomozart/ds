@@ -14,6 +14,10 @@ class DisjointNode {
     this.set.delete(item);
   }
 
+  clearSet() {
+    this.set = new Set();
+  }
+
   nowBelongsTo(newSet) {
     this.belongsTo = newSet;
   }

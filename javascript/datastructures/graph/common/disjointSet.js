@@ -3,15 +3,16 @@
 const DisjointNode = require('./disjointNode');
 
 class DisjointSet {
-  constructor() {
+  constructor(chatty = false) {
     this.map = new Map();
+    this.chatty = chatty;
   }
 
   makeSet(items) {
     for(let item of items) {
       this.map.set(item, new DisjointNode(item));
     }
-    console.log(`Disjoint set has been made for ${JSON.stringify(items)}`);
+    if(this.chatty) console.log(`Disjoint set has been made for ${JSON.stringify(items)}`);
     // this.printSet();
   }
 
@@ -23,6 +24,7 @@ class DisjointSet {
     
     if (size1 === 0) {
       set1 = this.map.get(set1.belongsTo);
+      item1 = set1.belongsTo;
       size1 = set1.set.size;
     } else if (size2 === 0) {
       set2 = this.map.get(set2.belongsTo);
@@ -34,19 +36,19 @@ class DisjointSet {
     } else {
       this.amalgamate(item2, item1);
     }
-    console.log(`Union of ${item1} and ${item2} is now complete`);
+    if(this.chatty) console.log(`Union of ${item1} and ${item2} is now complete`);
     // this.printSet();
   };
 
   findSet(item) {
     let result = this.map.get(item).belongsTo;
-    console.log(`${item} belongs to ${result}`);
+    if(this.chatty) console.log(`${item} belongs to ${result}`);
     return result;
   }
 
   getSet(item) {
     let result = this.map.get(item).set;
-    console.log(`${item} has ${JSON.stringify([...result])}`);
+    if(this.chatty) console.log(`${item} has ${JSON.stringify([...result])}`);
     return result;
   }
 
@@ -54,7 +56,7 @@ class DisjointSet {
     let toBeAbsorbedSet = this.map.get(toBeAbsorbed).set;
     for(let tobeAbsorbedItem of toBeAbsorbedSet) {
       this.map.get(tobeAbsorbedItem).nowBelongsTo(absorber);
-      this.map.get(tobeAbsorbedItem).removeFromSet(tobeAbsorbedItem);
+      this.map.get(tobeAbsorbedItem).clearSet();
       this.map.get(absorber).addToSet(tobeAbsorbedItem);
     }
   }
@@ -64,7 +66,7 @@ class DisjointSet {
   }
 }
 const demo = () => {
-  let set = new DisjointSet(10);
+  let set = new DisjointSet(true);
   set.makeSet(['A', 'B', 'C', 'D', 'E']);
   set.union('A', 'B');
   set.union('C', 'D');
@@ -73,6 +75,6 @@ const demo = () => {
   set.findSet('C');
 };
 
-demo();
+// demo();
 
 module.exports = DisjointSet;
