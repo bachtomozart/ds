@@ -1,53 +1,53 @@
 'use strict'
 
-const common = require('./common'),
-  Graph = common.Graph,
-  Vertex = common.Vertex,
-  MinHeap = common.MinHeap,
-  prepWeightedGraph = common.prepWeightedGraph;
+const Graph = require('./common/graph'),
+  Vertex = require('./common/vertex'),
+  MinHeap = require('./common/minHeap'),
+  prepGraph = require('./common/prepGraph');
 
 class ssspDijkstra extends Graph {
 
-  constructor(numberOfVertices) {
+  constructor(numberOfVertices, chatty = false) {
     super(numberOfVertices);
     this.heap = new MinHeap(numberOfVertices + 2);
     this.distances = new Map();
+    this.chatty = chatty;
   }
 
   findSSSP(sourceVertex) {
+    console.log(`Find SSSP - Dijkstra`);
     this.initializeHeapAndDistances(sourceVertex);
-    console.log(`Find SSSP - Dijkstra\n`);
     while(this.heap.peek()) {
       let currentVertex = this.heap.extract();
-      console.log(`Processing ${JSON.stringify(currentVertex)}`);
+      if(this.chatty) console.log(`Processing ${JSON.stringify(currentVertex)}`);
       let neighbours = this.adjacencyList.get(currentVertex.data);
-      console.log(`Neighbours for '${currentVertex.data}' is ${JSON.stringify(neighbours)}`)
+      if(this.chatty) console.log(`Neighbours for '${currentVertex.data}' is ${JSON.stringify(neighbours)}`)
       for(let neighbour of neighbours) {
         let currentTravel = currentVertex.weight + neighbour.weight;
         let currentDistance = this.distances.get(neighbour.data);
         if(currentTravel < currentDistance.weight) {
-          console.log(`------------`)
-          console.log(`\tThe shortest path found between ${currentVertex.data} and ${neighbour.data} - newDistance: ${currentTravel} oldDistance:${currentDistance.weight}`)
-          console.log(`\tDistances Before Update -> ${JSON.stringify([...this.distances.entries()])}`);
+          if(this.chatty) console.log(`------------`)
+          if(this.chatty) console.log(`\tNew shortest path found between ${currentVertex.data} and ${neighbour.data} - newDistance: ${currentTravel} oldDistance:${currentDistance.weight}`)
+          if(this.chatty) console.log(`\tDistances Before Update -> ${JSON.stringify([...this.distances.entries()])}`);
           currentDistance.weight = currentTravel;
           currentDistance.parent = currentVertex.data;
-          console.log(`\tDistances After Update -> ${JSON.stringify([...this.distances.entries()])}`);
+          if(this.chatty) console.log(`\tDistances After Update -> ${JSON.stringify([...this.distances.entries()])}`);
           neighbour.parent = currentVertex.data;
-          console.log(`\tNeighbours After Update -> ${JSON.stringify(neighbours)}`)
-          console.log(`------------`)
+          if(this.chatty) console.log(`\tNeighbours After Update -> ${JSON.stringify(neighbours)}`)
+          if(this.chatty) console.log(`------------`)
         }
       }
-      console.log(`Heap Array before update -> ${JSON.stringify(this.heap.array)}`);
+      if(this.chatty) console.log(`Heap Array before update -> ${JSON.stringify(this.heap.array)}`);
       for(let i=1;i<this.heap.array.length;i++) {
         if(this.heap.array[i]) {
           this.heap.array[i].weight = this.distances.get(this.heap.array[i].data).weight;
           this.heap.array[i].parent = this.distances.get(this.heap.array[i].data).parent;
         }
       }
-      console.log(`Heap Array after update -> ${JSON.stringify(this.heap.array)}`);
+      if(this.chatty) console.log(`Heap Array after update -> ${JSON.stringify(this.heap.array)}`);
       this.heap.balanceHeapBottomUp(this.heap.last-1, this.heap.array[this.heap.last-1]);
-      console.log(`Heap Array after balancing -> ${JSON.stringify(this.heap.array)}`);
-      console.log('\n');
+      if(this.chatty) console.log(`Heap Array after balancing -> ${JSON.stringify(this.heap.array)}`);
+      if(this.chatty) console.log('\n');
     }
     return this.distances;
   }
@@ -60,8 +60,8 @@ class ssspDijkstra extends Graph {
       this.heap.insert(new Vertex(vertex, weight));
       this.distances.set(vertex, new Vertex(vertex, weight));
     }
-    console.log(`\nInitialized Heap And Distances`);
-    console.log(`Distances -> ${JSON.stringify([...this.distances.entries()])}`);
+    console.log(`Initialized Heap And Distances`);
+    if(this.chatty) console.log(`Distances -> ${JSON.stringify([...this.distances.entries()])}`);
   }
 
   ssspBetween(startVertex, endVertex) {
@@ -82,7 +82,7 @@ class ssspDijkstra extends Graph {
 
 const demo = () => {
   let graph = new ssspDijkstra(10);
-  prepWeightedGraph(graph);
+  prepGraph(graph, 'weighted');
   graph.findSSSP('E');
   graph.ssspBetween('E', 'A');
   graph.ssspBetween('E', 'B');

@@ -1,9 +1,8 @@
 'use strict'
 
-const common = require('./common'),
-  Vertex = common.Vertex,
-  Graph = common.Graph,
-  prepGraph = common.prepGraph;
+const Graph = require('./common/graph'),
+  Vertex = require('./common/vertex'),
+  prepGraph = require('./common/prepGraph');
 
 class ssspBFS extends Graph {
   constructor(numberOfVertices) {
@@ -53,7 +52,7 @@ class ssspBFS extends Graph {
 
 const demo = () => {
   let graph = new ssspBFS(10);
-  prepGraph(graph);
+  prepGraph(graph, 'directed');
   graph.findSSSPByBFS(new Vertex('A'), null);
   graph.ssspBetween('A', 'G');
 };

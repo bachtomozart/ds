@@ -1,7 +1,5 @@
 'use strict'
 
-const ds = require('./common');
-
 class UndirectedGraph {
   constructor(numberOfVertices) {
     this.numberOfVertices = numberOfVertices;
@@ -56,16 +54,18 @@ class UndirectedGraph {
 
 const demo = () => {
   let graph = new UndirectedGraph(10); 
+  // Adding Vertices
   graph.addVertex('A');
   graph.addVertex('B');
   graph.addVertex('C');
   graph.addVertex('D');
+  // Adding Edges
   graph.addEdge('A', 'B');
   graph.addEdge('A', 'C');
   graph.addEdge('A', 'D');
   graph.addEdge('B', 'C');
   graph.addEdge('D', 'C');
-  graph.printGraph();
+  // graph.printGraph();
   graph.bfs('A');
   graph.dfs('A');
 };

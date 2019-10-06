@@ -1,8 +1,8 @@
 'use strict'
 
-const common = require('./common'),
-  Graph = common.Graph,
-  Vertex = common.Vertex;
+const prepGraph = require('./common/prepGraph'),
+  Graph = require('./common/graph'),
+  Vertex = require('./common/vertex');
 
 class apspFloydWarshal extends Graph {
   constructor(numberOfVertices) {
@@ -72,16 +72,7 @@ class apspFloydWarshal extends Graph {
 
 const demo = () => {
   let graph = new apspFloydWarshal(10);
-  graph.addVertex('A');
-  graph.addVertex('B');
-  graph.addVertex('C');
-  graph.addVertex('D');
-  graph.addEdge('A', 'B', 8);
-  graph.addEdge('A', 'D', 1);
-  graph.addEdge('B', 'C', 1);
-  graph.addEdge('C', 'A', 4);
-  graph.addEdge('D', 'B', 2);
-  graph.addEdge('D', 'C', 9);
+  prepGraph(graph, 'condensed');
   graph.findAPSP();
 };
 

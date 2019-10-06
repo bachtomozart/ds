@@ -1,10 +1,8 @@
 'use strict'
 
-const common = require('./common'),
-  Graph = common.Graph,
-  Vertex = common.Vertex,
-  prepWeightedGraph = common.prepWeightedGraph,
-  prepNegativeCycleGraph = common.prepNegativeCycleGraph;
+const Graph = require('./common/graph'),
+  Vertex = require('./common/vertex'),
+  prepGraph = require('./common/prepGraph');
 
 class ssspBellmanFord extends Graph {
 
@@ -89,8 +87,8 @@ class ssspBellmanFord extends Graph {
 
 const demo = () => {
   let graph = new ssspBellmanFord(10);
-  // prepWeightedGraph(graph);
-  prepNegativeCycleGraph(graph);
+  prepGraph(graph, 'weighted');
+  // prepGraph(graph, 'negativeCycle');
   let hasNegativeCycle = graph.findSSSP('E');
   if (!hasNegativeCycle) {
     graph.ssspBetween('E', 'A');
