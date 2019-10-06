@@ -82,6 +82,20 @@ class MinHeap {
     return result;
   }
 
+  updateMembers(distances) {
+    if(this.chatty) console.log(`Heap Array before update -> ${JSON.stringify(this.array)}`);
+    for(let i=1;i<this.array.length;i++) {
+      if(this.array[i]) {
+        this.array[i].weight = distances.get(this.array[i].data).weight;
+        this.array[i].parent = distances.get(this.array[i].data).parent;
+      }
+    }
+    if(this.chatty) console.log(`Heap Array after update -> ${JSON.stringify(this.array)}`);
+    this.balanceHeapBottomUp(this.last-1, this.array[this.last-1]);
+    this.balanceHeapTopDown(1, this.array[1]);
+    if(this.chatty) console.log(`Heap Array after balancing -> ${JSON.stringify(this.heap.array)}`);
+  }
+
   peek() {
     if(this.chatty) console.log(`Peeking -> ${JSON.stringify(this.array[1])}`);
     return this.array[1];

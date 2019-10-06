@@ -37,16 +37,8 @@ class ssspDijkstra extends Graph {
           if(this.chatty) console.log(`------------`)
         }
       }
-      if(this.chatty) console.log(`Heap Array before update -> ${JSON.stringify(this.heap.array)}`);
-      for(let i=1;i<this.heap.array.length;i++) {
-        if(this.heap.array[i]) {
-          this.heap.array[i].weight = this.distances.get(this.heap.array[i].data).weight;
-          this.heap.array[i].parent = this.distances.get(this.heap.array[i].data).parent;
-        }
-      }
-      if(this.chatty) console.log(`Heap Array after update -> ${JSON.stringify(this.heap.array)}`);
-      this.heap.balanceHeapBottomUp(this.heap.last-1, this.heap.array[this.heap.last-1]);
-      if(this.chatty) console.log(`Heap Array after balancing -> ${JSON.stringify(this.heap.array)}`);
+      // Update MinHeap members with the latest distances
+      this.heap.updateMembers(this.distances);
       if(this.chatty) console.log('\n');
     }
     return this.distances;
