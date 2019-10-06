@@ -4,7 +4,7 @@ const Graph = require('./common/graph'),
   DisjointSet = require('./common/disjointSet'),
   prepGraph = require('./common/prepGraph');
 
-class mstKruskal extends Graph {
+class mstKruskals extends Graph {
   constructor(numberOfVertices) {
     super(numberOfVertices, true);
     this.disjointSet = new DisjointSet();
@@ -49,7 +49,7 @@ class mstKruskal extends Graph {
 }
 
 const demo = () => {
-  let graph = new mstKruskal(5);
+  let graph = new mstKruskals(5);
   prepGraph(graph, 'undirectedWeighted');
   graph.findMST();
   graph.printMST();
