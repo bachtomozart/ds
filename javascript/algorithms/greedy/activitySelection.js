@@ -8,14 +8,14 @@ class Activity {
   }
 
   toString() {
-    return '[' + item.action + '|' + item.start + ',' + item.finish + ']';
+    return '[' + this.action + '|' + this.start + ',' + this.finish + ']';
   }
 }
 
 class ActivitySelection {
-  constructor(size) {
-    this.activities = new Array(size);
-    this.selection = new Array(size);
+  constructor() {
+    this.activities = new Array();
+    this.selection = new Array();
   }
 
   insert(action, start, finish) {
@@ -26,7 +26,7 @@ class ActivitySelection {
     this.activities.sort((a, b) => a.finish - b.finish);
     let previousActivity = new Activity('Dummy', -2, -1);
     for(let activity of this.activities) {
-      if(previousActivity && previousActivity.finish < activity.start) {
+      if(activity && previousActivity && previousActivity.finish < activity.start) {
         this.selection.push(activity);
         previousActivity = activity;
       }
@@ -34,12 +34,16 @@ class ActivitySelection {
   }
 
   printSelection() {
-    console.log(`Activity Selection -> ${this.selection.reduce((acc,item) => acc + "\t" + item.toString())}`)
+    const all = this.activities.reduce((acc,item) => acc + "\t" + item.toString()),
+      selection = this.selection.reduce((acc,item) => acc + "\t" + item.toString());
+    console.log(`Activity Selection`)
+    console.log(`All\t\t\t\t- ${all}`);
+    console.log(`Selection - ${selection}`);
   }
 }
 
 const demo = () => {
-  let as = new ActivitySelection(6)
+  let as = new ActivitySelection()
   as.insert('A1', 0, 6);
   as.insert('A2', 3, 4);
   as.insert('A3', 1, 2);
