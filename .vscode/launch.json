@@ -1,0 +1,134 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Activity Selection",
+      "program": "${workspaceFolder}/javascript/algorithms/greedy/activitySelection.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Priority Queue",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/common/priorityQueue.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "MST Prims",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/mstPrims.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "MST Kruskals",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/mstKruskals.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Disjoint Set - Common",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/common/disjointSet.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Disjoint Set",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/disjointSet.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "APSP Floyd Warshal",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/apspFloydWarshal.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "SSSP Bellman Ford",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/ssspBellmanFord.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "SSSP Dijkstra",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/ssspDijkstra.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "SSSP BFS",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/ssspBfs.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Directed Graph",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/directedGraph.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Undirected Graph",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/undirectedGraph.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Bloom Filter",
+      "program": "${workspaceFolder}/javascript/datastructures/hashing/bloomFilter.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Hashing - LP",
+      "program": "${workspaceFolder}/javascript/datastructures/hashing/lpHash.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Hashing - QP",
+      "program": "${workspaceFolder}/javascript/datastructures/hashing/qpHash.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Hashing - DC",
+      "program": "${workspaceFolder}/javascript/datastructures/hashing/dcHash.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Binary Heap",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/binaryHeap.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Trie",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/trie.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Binary Tree",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/binaryTree.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Binary Search Tree",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/binarySearchTree.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "AVL Tree",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/avlTree.js"
+    },
+  ]
+}
