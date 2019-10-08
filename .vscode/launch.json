@@ -7,6 +7,18 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Fibonacci",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/fibonacci.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Fractional Knapsack",
+      "program": "${workspaceFolder}/javascript/algorithms/greedy/fractionalKnapsack.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Activity Selection",
       "program": "${workspaceFolder}/javascript/algorithms/greedy/activitySelection.js"
     },
