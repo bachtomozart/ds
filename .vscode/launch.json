@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "House Thief",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/houseThief.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Number Factors",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/numberFactors.js"
     },
