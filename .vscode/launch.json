@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Number Factors",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/numberFactors.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Fibonacci",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/fibonacci.js"
     },
