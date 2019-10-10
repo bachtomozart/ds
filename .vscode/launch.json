@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "LCS",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lcs.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "ZeroOne Knapsack",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/zeroOneKnapsack.js"
     },
