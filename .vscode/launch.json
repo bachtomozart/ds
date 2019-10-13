@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "MinCostArray",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/minCostArray.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "LPS",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lps.js"
     },
