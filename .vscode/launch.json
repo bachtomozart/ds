@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "LPS",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lps.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "LCP",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lcp.js"
     },

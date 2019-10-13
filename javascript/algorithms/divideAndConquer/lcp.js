@@ -17,8 +17,8 @@ class LCP {
     if(string[start] === string[end]) {
       return 2 + this.findLCP(string, start + 1, end - 1);
     }
-    let different1 = this.findLCP(string, start, end - 1);
     let different2 = this.findLCP(string, start + 1, end);
+    let different1 = this.findLCP(string, start, end - 1);
     return Math.max(different1, different2);
   }
 }
