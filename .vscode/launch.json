@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "MinCostPaths",
+      "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/minCostPaths.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "MinCostArray",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/minCostArray.js"
     },

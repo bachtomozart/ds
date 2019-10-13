@@ -18,8 +18,8 @@ class MinCostArray {
   findMinCost(x=0 ,y=0) {
     this.bottomUp++;
     if(x >= this.array.length || y >= this.array.length) return Infinity;
-    let right = this.findMinCost(x+1,y);
-    let down = this.findMinCost(x, y+1);
+    let right = this.findMinCost(x, y+1);
+    let down = this.findMinCost(x+1, y);
     if(right === Infinity && down === Infinity) return this.array[x][y];
     return Math.min(right, down) + this.array[x][y];
   }
@@ -28,8 +28,8 @@ class MinCostArray {
     this.topDown++;
     if(x < 0 || y < 0) return Infinity;
     if(x === 0 && y === 0) return this.array[0][0];
-    let up = this.findMinCostTD(x-1, y);
     let left = this.findMinCostTD(x, y-1);
+    let up = this.findMinCostTD(x-1, y);
     return Math.min(up, left) + this.array[x][y];
   }
 }
