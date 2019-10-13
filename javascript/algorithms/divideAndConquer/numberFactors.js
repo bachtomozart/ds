@@ -22,8 +22,8 @@ class NumberFactor {
 const demo = () => {
   let nf = new NumberFactor(new Array(1,3,4));
   console.log(`The number of factors for 4 is ${nf.findNumberOfFactors(4)}`);
-  console.log(`The number of factors for 4 is ${nf.findNumberOfFactors(5)}`);
-  console.log(`The number of factors for 4 is ${nf.findNumberOfFactors(20)}`);
+  console.log(`The number of factors for 5 is ${nf.findNumberOfFactors(5)}`);
+  console.log(`The number of factors for 10 is ${nf.findNumberOfFactors(10)}`);
 }
 
 demo();
