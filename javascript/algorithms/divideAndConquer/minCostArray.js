@@ -7,6 +7,7 @@ class MinCostArray {
     this.topDown = 0;
   }
 
+  // Maybe I got the top down vs bottom up mixed up, well we'll know soon
   getMinCost() {
     let result = this.findMinCost();
     let result2 = this.findMinCostTD();
