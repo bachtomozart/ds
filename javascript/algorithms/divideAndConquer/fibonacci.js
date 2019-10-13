@@ -10,7 +10,7 @@ class Fibonacci {
       return null;
     if (this.map.has(number)) 
       return this.map.get(number);
-    let result = this.fibonacci(number - 2) + this.fibonacci(number - 1);
+    let result = this.fibonacci(number - 1) + this.fibonacci(number - 2);
     this.map.set(number, result);
     return result;
   }
