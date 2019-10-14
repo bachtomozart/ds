@@ -4,35 +4,48 @@ class NumberFactors {
 
   constructor(factors, map) {
     this.factors = factors;
-    this.map = map;
+    this.map = new Map(map);
+    this.bottomUpMap = new Map(map);
     this.ways = Array.from(map.values());
+    this.recursiveCount = 0;
+    this.topDownCount = 0;
+    this.bottomUpCount = 0;
   }
 
   getNumberFactors(number) {
-    // let result = this.numberFactors(number);
-    let result = this.findNumberFactors(number);
+    let recursive = this.numberFactorsRecursive(number);
+    let topDown = this.numberFactorsTopDown(number);
+    let bottomUp = this.numberFactorsBottomUp(number);
+    let result = bottomUp;
     console.log(`The number factors for ${number} is ${result}`);
+    console.log(`Recursive - ${this.recursiveCount}, TopDown - ${this.topDownCount}, BottomUp - ${this.bottomUpCount}`);
   }
 
-  numberFactors(number) {
+  numberFactorsRecursive(number) {
+    this.recursiveCount++;
+  }
+
+  numberFactorsTopDown(number) {
+    this.topDownCount++;
     if(this.map.has(number)) return this.map.get(number);
     let result = 0;
     for(let factor of this.factors) {
-      result += this.numberFactors(number - factor);
+      result += this.numberFactorsTopDown(number - factor);
     }
     this.map.set(number, result);
     return result;
   }
 
-  findNumberFactors(number) {
-    if(this.map.has(number)) return this.ways[number];
+  numberFactorsBottomUp(number) {
+    if(this.bottomUpMap.has(number)) return this.ways[number];
     for(let i = this.ways.length; i <= number; i++) {
+      this.bottomUpCount++;
       let result = 0;
       for(let factor of this.factors) {
         result += this.ways[(i-factor)];
       }
       this.ways.push(result);
-      this.map.set(i, result);
+      this.bottomUpMap.set(i, result);
     }
     return this.ways[number];
   }
@@ -46,7 +59,6 @@ const demo = () => {
     [2,1],
     [3,2]
   ]));
-  nf.getNumberFactors(5);
   nf.getNumberFactors(10);
 }
 
