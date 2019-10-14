@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Dynamic - House Thief",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/houseThief.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - Number Factors",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/numberFactors.js"
     },

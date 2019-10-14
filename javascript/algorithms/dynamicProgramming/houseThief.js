@@ -16,11 +16,12 @@ class HouseThief {
   }
 
   getTargets(houses) {
-    let recursive = this.findTargetsRecursive(houses)
-    let topDown = this.findTargetsTopDown(houses)
-    let result = topDown;
+    let recursive = this.findTargetsRecursive(houses);
+    let topDown = this.findTargetsTopDown(houses);
+    let bottomUp = this.findTargetsBottomUp(houses);
+    let result = bottomUp;
     console.log(`The max possible value is ${result}`);
-    console.log(`Recursive : ${this.recursiveCount}, TopDown : ${this.topDownCount}`);
+    console.log(`Recursive : ${this.recursiveCount}, TopDown : ${this.topDownCount}, BottomUp : ${this.bottomUpCount}`);
   }
 
   findTargetsRecursive(houses, pos = 0) {
@@ -39,6 +40,25 @@ class HouseThief {
     let skip = this.findTargetsTopDown(houses, pos + 1);
     let result = Math.max(steal, skip)
     this.map.set(pos, result);
+    return result;
+  }
+
+  findTargetsBottomUp(houses) {
+    let result = 0, i = 0;
+    while(i < houses.length) {
+      this.bottomUpCount++;
+      if (i+1 < houses.length) {
+        if(houses[i].value > houses[i+1].value) {
+          result += houses[i].value;
+          i = i + 2;
+        } else {
+          result += houses[i+1].value;
+          i = i + 3;
+        }
+      } else {
+        result += houses[i].value;
+      }
+    }
     return result;
   }
 }
