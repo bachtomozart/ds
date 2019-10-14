@@ -13,16 +13,17 @@ class Fibonacci {
 
   findFibonacci(n) {
     if(this.computed.has(n)) return this.array[n];
-    for(let i = this.array.length-1; i < n; i++) {
+    for(let i = this.array.length; i < n; i++) {
       this.array.push(this.array[i-1] + this.array[i-2]);
     }
-    return this.array[n];
+    return this.array[n-1];
   }
 }
 
 const demo = () => {
   let fib = new Fibonacci();
-  fib.getFibonacci(5);
+  fib.getFibonacci(10);
+  fib.getFibonacci(20);
 }
 
 demo();

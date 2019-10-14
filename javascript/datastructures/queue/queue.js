@@ -1,6 +1,6 @@
 'use strict'
-import { QueueArray, demoQueueArray } from './queueArray';
-import { QueueLinkedList, demoQueueLinkedList } from './queueLinkedList';
+import { QueueArray, demoQueueArray } from './array';
+import { QueueLinkedList, demoQueueLinkedList } from './linkedList';
 
 demoQueueArray();
 
