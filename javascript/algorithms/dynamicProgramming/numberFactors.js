@@ -23,6 +23,12 @@ class NumberFactors {
 
   numberFactorsRecursive(number) {
     this.recursiveCount++;
+    if(this.map.has(number)) return this.map.get(number);
+    let result = 0;
+    for(let factor of this.factors) {
+      result += this.numberFactorsRecursive(number - factor);
+    }
+    return result;
   }
 
   numberFactorsTopDown(number) {
