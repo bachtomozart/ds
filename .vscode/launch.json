@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Dynamic - Number Factors",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/numberFactors.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - Fibonacci",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/fibonacci.js"
     },
