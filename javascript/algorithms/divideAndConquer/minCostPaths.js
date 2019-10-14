@@ -6,21 +6,23 @@ class MinCostPaths {
   }
 
   getMCP(cost) {
-    let result = this.findMCP(0,0,cost,0);
+    let result = this.findMCP(cost);
     console.log(`The total paths for the given ${cost} is ${result}`);
   }
 
-  findMCP(x, y, totalCost, currCost) {
-    if(x >= this.array.length - 1 || y >= this.array.length - 1) return currCost;
-    let right = this.findMCP(x, y+1, totalCost, currCost + this.array[x][y]);
-    let down = this.findMCP(x+1, y, totalCost, currCost + this.array[x][y]);
-    let result = 0;
-    if(x === this.array.length-1 && y === this.array.length - 1) {
-      if(currCost + this.array[x][y] === totalCost) 
-        return 1 + Math.max(right,down);
+  findMCP(totalCost, paths = 0, cost = 0, x = this.array.length - 1, y = this.array.length - 1) {
+    if(x < 0 || y < 0) return 0;
+    let up = this.findMCP(totalCost, paths, cost + this.array[x][y], x, y-1);
+    let down = this.findMCP(totalCost, paths, cost + this.array[x][y], x -1, y);
+    paths = up + down;
+    if(x===0 && 
+      y===0 && 
+      (cost + this.array[0][0]) === totalCost) {
+      paths = paths + 1;
     }
-    return right + down;
+    return paths;
   }
+
 }
 
 const demo = () => {

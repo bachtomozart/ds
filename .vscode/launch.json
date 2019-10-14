@@ -7,68 +7,86 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "MinCostPaths",
+      "name": "Dynamic - Fibonacci",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/fibonacci.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Divide And Conquer - MinCostPaths",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/minCostPaths.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "MinCostArray",
+      "name": "Divide And Conquer - MinCostArray",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/minCostArray.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "LPS",
+      "name": "Divide And Conquer - LPS",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lps.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "LCP",
+      "name": "Divide And Conquer - LCP",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lcp.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "LCS",
+      "name": "Divide And Conquer - LCS",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/lcs.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "ZeroOne Knapsack",
+      "name": "Divide And Conquer - ZeroOne Knapsack",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/zeroOneKnapsack.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "House Thief",
+      "name": "Divide And Conquer - House Thief",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/houseThief.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Number Factors",
+      "name": "Divide And Conquer - Number Factors",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/numberFactors.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Fibonacci",
+      "name": "Divide And Conquer - Fibonacci",
       "program": "${workspaceFolder}/javascript/algorithms/divideAndConquer/fibonacci.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Fractional Knapsack",
+      "name": "Greedy - Fractional Knapsack",
       "program": "${workspaceFolder}/javascript/algorithms/greedy/fractionalKnapsack.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Activity Selection",
+      "name": "Greedy - Activity Selection",
       "program": "${workspaceFolder}/javascript/algorithms/greedy/activitySelection.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Graph - MST Prims",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/mstPrims.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Graph - MST Kruskals",
+      "program": "${workspaceFolder}/javascript/datastructures/graph/mstKruskals.js"
     },
     {
       "type": "node",
@@ -79,68 +97,56 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "MST Prims",
-      "program": "${workspaceFolder}/javascript/datastructures/graph/mstPrims.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "MST Kruskals",
-      "program": "${workspaceFolder}/javascript/datastructures/graph/mstKruskals.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Disjoint Set - Common",
+      "name": "Disjoint Set",
       "program": "${workspaceFolder}/javascript/datastructures/graph/common/disjointSet.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Disjoint Set",
-      "program": "${workspaceFolder}/javascript/datastructures/graph/disjointSet.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "APSP Floyd Warshal",
+      "name": "Graph - APSP Floyd Warshal",
       "program": "${workspaceFolder}/javascript/datastructures/graph/apspFloydWarshal.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "SSSP Bellman Ford",
+      "name": "Graph - SSSP Bellman Ford",
       "program": "${workspaceFolder}/javascript/datastructures/graph/ssspBellmanFord.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "SSSP Dijkstra",
+      "name": "Graph - SSSP Dijkstra",
       "program": "${workspaceFolder}/javascript/datastructures/graph/ssspDijkstra.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "SSSP BFS",
+      "name": "Graph - SSSP BFS",
       "program": "${workspaceFolder}/javascript/datastructures/graph/ssspBfs.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Directed Graph",
+      "name": "Graph - Directed Graph",
       "program": "${workspaceFolder}/javascript/datastructures/graph/directedGraph.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Undirected Graph",
+      "name": "Graph - Undirected Graph",
       "program": "${workspaceFolder}/javascript/datastructures/graph/undirectedGraph.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Bloom Filter",
+      "name": "Hashing - Bloom Filter",
       "program": "${workspaceFolder}/javascript/datastructures/hashing/bloomFilter.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Hashing - DH",
+      "program": "${workspaceFolder}/javascript/datastructures/hashing/dhHash.js"
     },
     {
       "type": "node",
@@ -163,32 +169,68 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Binary Heap",
+      "name": "Tree - Binary Heap",
       "program": "${workspaceFolder}/javascript/datastructures/tree/binaryHeap.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Trie",
+      "name": "Tree - Trie",
       "program": "${workspaceFolder}/javascript/datastructures/tree/trie.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Binary Tree",
+      "name": "Tree - AVL Tree",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/avlTree.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Tree - Binary Tree",
       "program": "${workspaceFolder}/javascript/datastructures/tree/binaryTree.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Binary Search Tree",
+      "name": "Tree - Binary Search Tree",
       "program": "${workspaceFolder}/javascript/datastructures/tree/binarySearchTree.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "AVL Tree",
-      "program": "${workspaceFolder}/javascript/datastructures/tree/avlTree.js"
+      "name": "Queue - LinkedList",
+      "program": "${workspaceFolder}/javascript/datastructures/queue/queuLinkedList.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Queue - Array",
+      "program": "${workspaceFolder}/javascript/datastructures/queue/array.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Stack - LinkedList",
+      "program": "${workspaceFolder}/javascript/datastructures/stack/linkedList.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Stack - Array",
+      "program": "${workspaceFolder}/javascript/datastructures/stack/array.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Linked List",
+      "program": "${workspaceFolder}/javascript/datastructures/linkedlist/main.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Array",
+      "program": "${workspaceFolder}/javascript/datastructures/array/sda.js"
     },
   ]
 }
