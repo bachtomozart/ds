@@ -1,5 +1,7 @@
 'use strict'
 
+const Dynamic = require('./dynamic');
+
 class House {
   constructor(name, value) {
     this.name = name;
@@ -7,12 +9,11 @@ class House {
   }
 }
 
-class HouseThief {
+class HouseThief extends Dynamic {
+
   constructor() {
+    super();
     this.map = new Map();
-    this.recursiveCount = 0;
-    this.topDownCount = 0;
-    this.bottomUpCount = 0;
   }
 
   getTargets(houses) {
@@ -21,7 +22,7 @@ class HouseThief {
     let bottomUp = this.findTargetsBottomUp(houses);
     let result = bottomUp;
     console.log(`The max possible value is ${result}`);
-    console.log(`Recursive : ${this.recursiveCount}, TopDown : ${this.topDownCount}, BottomUp : ${this.bottomUpCount}`);
+    this.printCounts();
   }
 
   findTargetsRecursive(houses, pos = 0) {

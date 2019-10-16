@@ -1,15 +1,15 @@
 'use strict'
 
-class NumberFactors {
+const Dynamic = require('./dynamic');
+
+class NumberFactors extends Dynamic {
 
   constructor(factors, map) {
+    super();
     this.factors = factors;
     this.map = new Map(map);
     this.bottomUpMap = new Map(map);
     this.ways = Array.from(map.values());
-    this.recursiveCount = 0;
-    this.topDownCount = 0;
-    this.bottomUpCount = 0;
   }
 
   getNumberFactors(number) {
@@ -18,7 +18,7 @@ class NumberFactors {
     let bottomUp = this.numberFactorsBottomUp(number);
     let result = bottomUp;
     console.log(`The number factors for ${number} is ${result}`);
-    console.log(`Recursive - ${this.recursiveCount}, TopDown - ${this.topDownCount}, BottomUp - ${this.bottomUpCount}`);
+    this.printCounts();
   }
 
   numberFactorsRecursive(number) {

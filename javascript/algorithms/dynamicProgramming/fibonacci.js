@@ -1,14 +1,14 @@
 'use strict'
 
-class Fibonacci {
+const Dynamic = require('./dynamic');
+
+class Fibonacci extends Dynamic {
 
   constructor() {
+    super();
     this.array = [0, 1]
     this.computed = new Set([0, 1]);
     this.map = new Map([[1, 0], [2, 1]]);
-    this.recursiveCount = 0;
-    this.topDownCount = 0;
-    this.bottomUpCount = 0;
   }
 
   getFibonacci(n) {
@@ -17,7 +17,7 @@ class Fibonacci {
     let bottomUp = this.fibonacciBottomUp(n);
     let result = bottomUp;
     console.log(`The fibonacci for ${n} is ${result}`);
-    console.log(`Recursive - ${this.recursiveCount}, TopDown - ${this.topDownCount}, BottomUp - ${this.bottomUpCount}`);
+    this.printCounts();
   }
 
   // recursive
