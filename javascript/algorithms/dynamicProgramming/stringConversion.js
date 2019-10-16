@@ -14,7 +14,7 @@ class StringConversion extends Dynamic {
     let recursive = this.conversionsRecursive(string1, string2);
     let topDown = this.conversionsTopDown(string1, string2);
     let bottomUp = this.conversionsBottomUp(string1, string2);
-    let result = topDown;
+    let result = bottomUp;
     console.log(`The min converstions for ${string1} and ${string2} is ${result}`);
     this.printCounts();
   }
@@ -63,21 +63,18 @@ class StringConversion extends Dynamic {
 
   conversionsBottomUp(string1, string2, pos1 = 0, pos2 = 0) {
     this.initializeTwoDimensionalArray(string1, string2);
-    for(let pos1 = (string1.length - 1); pos1 >= 0; pos1--) {
-      for(let pos2 = (string2.length - 1); pos2 >= 0; pos2--) {
+    for(let pos1 = 1; pos1 <= string1.length; pos1++) {
+      for(let pos2 = 1; pos2 <= string2.length; pos2++) {
         this.bottomUpCount++;
         if(string1[pos1] === string2[pos2]) {
-          this.array[pos1][pos2] = Math.min(this.array[pos1+1][pos2], this.array[pos1][pos2+1], this.array[pos1+1][pos2+1]);
+          this.array[pos1][pos2] = this.array[pos1-1][pos2-1];
         } else {
-          let insertion = 1 + (this.array[pos1+1][pos2] || 0);
-          let deletion = 1 + (this.array[pos1][pos2+1] || 0);
-          let replacement = 1 + (this.array[pos1+1][pos2+1] || 0);
-          this.array[pos1][pos2] = Math.min(insertion, deletion, replacement);
+          this.array[pos1][pos2] = 1 + Math.min(this.array[pos1-1][pos2],this.array[pos1][pos2-1],this.array[pos1-1][pos2-1]);
         }
       }
     }
     this.printTwoDimensionalArray(string1, string2);
-    return this.array[0][0];
+    return this.array[string1.length][string2.length];
   }
 
   getPos(pos1, pos2) {
@@ -85,38 +82,65 @@ class StringConversion extends Dynamic {
   }
 
   initializeTwoDimensionalArray(string1, string2) {
-    for(let i=0;i<=(string1.length+1);i++) {
+    for(let i=0;i<=string1.length;i++) {
       this.array[i] = new Object();
-      for(let j=0;j<=(string2.length+1);j++) {
-        if (i > string1.length) {
-          this.array[i][j] = i;
-        } else if(j > string2.length) {
-          this.array[i][j] = j;
-        } else {
-          this.array[i][j] = null;
-        }
+      for(let j=0;j<=string2.length;j++) {
+        this.array[i][j] = 0;
       }
     }
+    this.initializeBaseCase(string1, string2);
     this.printTwoDimensionalArray(string1, string2);
   }
 
+  initializeBaseCase(string1, string2) {
+    for(let i=0;i<=string1.length;i++) {
+      this.array[i][0] = i;
+    }
+    for(let j=0;j<=string2.length;j++) {
+      this.array[0][j] = j;
+    }
+  }
+
   printTwoDimensionalArray(string1, string2) {
-    console.log('-----------------------');
-    for(let i=0;i<string1.length;i++) {
-      let string = '';
-      for(let j=0;j<string2.length;j++) {
+    console.log('-------------------------------');
+    console.log('(-)\t(-)\t' + string2.split('').reduce((acc,item) => acc + '(' + item + ')\t', ''));
+    for(let i=0;i<=string1.length;i++) {
+      let string = '(' + (string1[i-1] || '-') + ')\t';
+      for(let j=0;j<=string2.length;j++) {
         string += '[' + this.array[i][j] + ']\t';
       }
       console.log(string);
     }
-    console.log('-----------------------');
+    console.log('-------------------------------');
+  }
+
+  initializeBaseCaseInverted(string1, string2) {
+    for(let i=string1.length;i>=0;i--) {
+      this.array[i][string2.length] = string1.length-i;
+    }
+    for(let j=string2.length;j>=0;j--) {
+      this.array[string1.length][j] = string2.length-j;
+    }
+  }
+
+  printTwoDimensionalArrayInverted(string1, string2) {
+    console.log('-------------------------------');
+    console.log('(-)\t' + string2.split('').reduce((acc,item) => acc + '(' + item + ')\t', '') + '(-)');
+    for(let i=0;i<=string1.length;i++) {
+      let string = '(' + (string1[i] || '-') + ')\t';
+      for(let j=0;j<=string2.length;j++) {
+        string += '[' + this.array[i][j] + ']\t';
+      }
+      console.log(string);
+    }
+    console.log('-------------------------------');
   }
 
 }
 
 const demo = () => {
   let sc = new StringConversion();
-  sc.getConversions('Table', 'Tgable');
+  sc.getConversions('Table', 'Tablee');
 }
 
 demo();
