@@ -13,7 +13,8 @@ class StringConversion extends Dynamic {
   getConversions(string1, string2) {
     let recursive = this.conversionsRecursive(string1, string2);
     let topDown = this.conversionsTopDown(string1, string2);
-    let bottomUp = this.conversionsBottomUp(string1, string2);
+    let bottomUp = this.conversionsBottomUpInverted(string1, string2);
+    // bottomUp = this.conversionsBottomUp(string1, string2);
     let result = bottomUp;
     console.log(`The min converstions for ${string1} and ${string2} is ${result}`);
     this.printCounts();
@@ -61,10 +62,15 @@ class StringConversion extends Dynamic {
     return result;
   }
 
+  getPos(pos1, pos2) {
+    return pos1 + '-' + pos2;
+  }
+
   conversionsBottomUp(string1, string2, pos1 = 0, pos2 = 0) {
+    this.bottomUpCount = 0;
     this.initializeTwoDimensionalArray(string1, string2);
-    for(let pos1 = 1; pos1 <= string1.length; pos1++) {
-      for(let pos2 = 1; pos2 <= string2.length; pos2++) {
+    for(let pos1 = 1; pos1 <=string1.length; pos1++) {
+      for(let pos2 = 1; pos2 <=string2.length; pos2++) {
         this.bottomUpCount++;
         if(string1[pos1] === string2[pos2]) {
           this.array[pos1][pos2] = this.array[pos1-1][pos2-1];
@@ -77,11 +83,16 @@ class StringConversion extends Dynamic {
     return this.array[string1.length][string2.length];
   }
 
-  getPos(pos1, pos2) {
-    return pos1 + '-' + pos2;
+  processIteration(string1, string2, pos1, pos2) {
+    if(string1[pos1] === string2[pos2]) {
+      this.array[pos1][pos2] = this.array[pos1-1][pos2-1];
+    } else {
+      this.array[pos1][pos2] = 1 + Math.min(this.array[pos1-1][pos2],this.array[pos1][pos2-1],this.array[pos1-1][pos2-1]);
+    }
   }
 
   initializeTwoDimensionalArray(string1, string2) {
+    this.array = new Object();
     for(let i=0;i<=string1.length;i++) {
       this.array[i] = new Object();
       for(let j=0;j<=string2.length;j++) {
@@ -114,6 +125,35 @@ class StringConversion extends Dynamic {
     console.log('-------------------------------');
   }
 
+  conversionsBottomUpInverted(string1, string2, pos1 = 0, pos2 = 0) {
+    this.bottomUpCount = 0;
+    this.initializeTwoDimensionalArrayInverted(string1, string2);
+    for(let pos1 = (string1.length-1); pos1 >=0; pos1--) {
+      for(let pos2 = (string2.length-1); pos2 >=0; pos2--) {
+        this.bottomUpCount++;
+        if(string1[pos1] === string2[pos2]) {
+          this.array[pos1][pos2] = this.array[pos1+1][pos2+1];
+        } else {
+          this.array[pos1][pos2] = 1 + Math.min(this.array[pos1+1][pos2],this.array[pos1][pos2+1],this.array[pos1+1][pos2+1]);
+        }
+      }
+    }
+    this.printTwoDimensionalArrayInverted(string1, string2);
+    return this.array[0][0];
+  }
+
+  initializeTwoDimensionalArrayInverted(string1, string2) {
+    this.array = new Object();
+    for(let i=0;i<=string1.length;i++) {
+      this.array[i] = new Object();
+      for(let j=0;j<=string2.length;j++) {
+        this.array[i][j] = 0;
+      }
+    }
+    this.initializeBaseCaseInverted(string1, string2);
+    this.printTwoDimensionalArrayInverted(string1, string2);
+  }
+
   initializeBaseCaseInverted(string1, string2) {
     for(let i=string1.length;i>=0;i--) {
       this.array[i][string2.length] = string1.length-i;
@@ -140,7 +180,7 @@ class StringConversion extends Dynamic {
 
 const demo = () => {
   let sc = new StringConversion();
-  sc.getConversions('Table', 'Tablee');
+  sc.getConversions('Table', 'Tgable');
 }
 
 demo();
