@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Dynamic - LCS",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/lcs.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - Zero One Knapsack",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/zeroOneKnapsack.js"
     },
