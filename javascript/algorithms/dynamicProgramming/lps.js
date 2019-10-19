@@ -9,12 +9,13 @@ class LPS extends Dynamic {
   }
 
   initialize() {
-    this.map = new Map();
     this.array = new Object();
+    this.tdArray = new Object();
   }
 
   getLPS(string) {
     let recursive = this.findLPSRecursive(string);
+    this.initializeTDArray(string);
     let topDown = this.findLPSTopDown(string);
     let bottomUp = this.findLPSBottomUp(string);
     let result = topDown;
@@ -40,7 +41,7 @@ class LPS extends Dynamic {
     this.topDownCount++;
     if(start > end) return 0;
     if(start === end) return 1;
-    if(this.map.has(this.getKey(start, end))) this.map.get(this.getKey(start, end));
+    if(this.tdArray[start][end]) return this.tdArray[start][end];
     let result = 0;
     if(string[start] === string[end]) {
       let remaining = end - start - 1;
@@ -50,12 +51,18 @@ class LPS extends Dynamic {
     } else {
       result = Math.max(this.findLPSTopDown(string, start+1, end), this.findLPSTopDown(string, start, end-1));
     }
-    this.map.set(this.getKey(start, end), result);
+    this.tdArray[start][end] = result;
     return result;
   }
 
-  getKey(start, end) {
-    return start + '-' + end;
+  initializeTDArray(input) {
+    this.tdArray = new Object();
+    for(let i=0;i<=input.length;i++) {
+      this.tdArray[i] = new Object();
+      for(let j=0;j<=input.length;j++) {
+        this.tdArray[i][j] = null;
+      }
+    }
   }
 
   findLPSBottomUp(string) {

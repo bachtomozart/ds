@@ -10,12 +10,13 @@ class MinCostArray extends Dynamic {
   }
 
   initialize() {
-    this.map = new Map();
     this.array = new Object();
+    this.tdArray = new Object();
   }
 
   getMCA(array) {
     let recursive = this.findMCARecursive(array);
+    this.initializeTDArray(array);
     let topDown = this.findMCATopDown(array);
     let bottomUp = this.findMCABottomUp(array);
     let result = bottomUp;
@@ -34,18 +35,24 @@ class MinCostArray extends Dynamic {
 
   findMCATopDown(array, i=0, j=0) {
     this.topDownCount++;
-    if(this.map.has(this.getKey(i,))) return this.map.get(this.getKey(i,j));
+    if(this.tdArray[i][j]) return this.tdArray[i][j];
     if(i >= array.length || j >= array.length) return Infinity;
     if(i === (array.length-1) && j === (array.length-1)) return array[i][j];
     let right = array[i][j] + this.findMCATopDown(array, i, j+1);
     let down = array[i][j] + this.findMCATopDown(array, i+1, j);
     let result = Math.min(right, down);
-    this.map.set(this.getKey(i, j), result);
+    this.tdArray[i][j] = result;
     return result;
-   }
+  }
 
-  getKey(i, j) {
-    return i + '-' + j;
+  initializeTDArray(input) {
+    this.tdArray = new Object();
+    for(let i=0;i<=input.length;i++) {
+      this.tdArray[i] = new Object();
+      for(let j=0;j<=input.length;j++) {
+        this.tdArray[i][j] = null;
+      }
+    }
   }
 
   findMCABottomUp(input) {
