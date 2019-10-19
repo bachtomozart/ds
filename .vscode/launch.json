@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Dynamic - LCP",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/lcp.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - LCS",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/lcs.js"
     },

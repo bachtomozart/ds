@@ -180,7 +180,7 @@ class StringConversion extends Dynamic {
 
 const demo = () => {
   let sc = new StringConversion();
-  sc.getConversions('Table', 'Tgable');
+  sc.getConversions('Tablespoon', 'Tgable');
 }
 
 demo();

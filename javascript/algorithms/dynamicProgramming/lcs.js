@@ -20,7 +20,7 @@ class LCS extends Dynamic {
     let recursive = this.findLCSRecursive(string1, string2);
     let topDown = this.findLCSTopDown(string1, string2);
     let bottomUp = this.findLCSBottomUp(string1, string2);
-    let result = bottomUp;
+    let result = topDown;
     console.log(`The LCS for ${string1} and ${string2} is ${result}`);
     this.printCounts();
   }
@@ -63,8 +63,7 @@ class LCS extends Dynamic {
       for(let pos2=(string2.length-1); pos2>=0; pos2--) {
         this.bottomUpCount++;
         if(string1[pos1] === string2[pos2]) {
-          this.array[pos1][pos2] = (this.visited.has(string1[pos1]) ? 0 : 1) + Math.max(this.array[pos1+1][pos2], this.array[pos1][pos2+1]);
-          if(!this.visited.has(string1[pos1])) this.visited.add(string1[pos1]);
+          this.array[pos1][pos2] = Math.max((1 + this.array[pos1+1][pos2+1]), this.array[pos1+1][pos2], this.array[pos1][pos2+1]);
         } else {
           this.array[pos1][pos2] = Math.max(this.array[pos1+1][pos2], this.array[pos1][pos2+1])
         }
@@ -111,7 +110,7 @@ class LCS extends Dynamic {
 
 const demo = () => {
   let lcs = new LCS();
-  lcs.getLCS('Table', 'Tobee');
+  lcs.getLCS('Teable', 'Teobee');
 }
 
 demo();
