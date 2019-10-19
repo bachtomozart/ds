@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Dynamic - MCP",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/minCostPaths.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - MCA",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/minCostArray.js"
     },
