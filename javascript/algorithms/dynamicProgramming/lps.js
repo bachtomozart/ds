@@ -67,7 +67,8 @@ class LPS extends Dynamic {
           continue;
         } else {
           if(string[i] === string[j]) {
-            this.array[i][j] = Math.max((2 + this.array[i+1][j-1]), this.array[i+1][j], this.array[i][j-1]);
+            let remaining = (j - i - 1) === this.array[i+1][j-1] ? (2 + this.array[i+1][j-1]) : 0;
+            this.array[i][j] = Math.max(remaining, this.array[i+1][j], this.array[i][j-1]);
           } else {
             this.array[i][j] = Math.max(this.array[i+1][j], this.array[i][j-1]);
           }
@@ -123,7 +124,7 @@ class LPS extends Dynamic {
 
 const demo = () => {
   let lps = new LPS();
-  lps.getLPS('MONO');
+  lps.getLPS('MONOTONOUS');
 }
 
 demo();
