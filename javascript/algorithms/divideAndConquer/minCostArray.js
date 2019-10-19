@@ -8,6 +8,7 @@ class MinCostArray {
   }
 
   // Maybe I got the top down vs bottom up mixed up, well we'll know soon
+  // Yea you got it wrong, refer to the dynamic programming folder for MinCostArray about topdown vs bottom up 
   getMinCost() {
     let result = this.findMinCost();
     let result2 = this.findMinCostTD();

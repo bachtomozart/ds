@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Dynamic - MCA",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/minCostArray.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - LPS",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/lps.js"
     },
