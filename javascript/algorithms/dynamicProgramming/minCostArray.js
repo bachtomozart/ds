@@ -34,8 +34,8 @@ class MinCostArray extends Dynamic {
   }
 
   findMCATopDown(array, i=0, j=0) {
-    this.topDownCount++;
     if(this.tdArray[i][j]) return this.tdArray[i][j];
+    this.topDownCount++;
     if(i >= array.length || j >= array.length) return Infinity;
     if(i === (array.length-1) && j === (array.length-1)) return array[i][j];
     let right = array[i][j] + this.findMCATopDown(array, i, j+1);

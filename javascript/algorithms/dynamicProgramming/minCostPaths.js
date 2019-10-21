@@ -40,6 +40,7 @@ class MCP extends Dynamic {
   }
 
   findMCPTopDown(input, cost, i=(input.length-1), j=(input.length-1)) {
+    if(this.map.has(this.getKey(i,j,cost))) return this.map.get(this.getKey(i,j,cost));
     this.topDownCount++;
     if(cost < 0) 
       return 0;
@@ -47,7 +48,6 @@ class MCP extends Dynamic {
       return ((input[0][0] - cost) === 0) ? 1 : 0;
     // if(this.tdArray[i][j]) 
       // return this.tdArray[i][j];
-    if(this.map.has(this.getKey(i,j,cost))) return this.map.get(this.getKey(i,j,cost));
     if(i === 0) 
       return this.findMCPTopDown(input, cost - input[i][j], 0, j-1);
     if(j === 0) 
