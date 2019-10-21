@@ -14,14 +14,15 @@ class CountCharacters {
   findCharacterCount(string) {
     let result = new Object();
     for(let i=0;i<string.length;i++) {
-      let char = string[i];
+      let char = string[i].toLowerCase();
       if(!this.alphanumeric.test(char)) 
         continue;
-      if(result[char.toLowerCase()]) {
-        result[char.toLowerCase()] = result[char.toLowerCase()] + 1;
-      } else  {
-        result[char.toLowerCase()] = 1;
-      }
+      result[char] = ++result[char] || 1;
+      // if(result[char]) {
+        // result[char] = result[char] + 1;
+      // } else  {
+        // result[char] = 1;
+      // }
     }
     return result;
   }
