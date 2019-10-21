@@ -33,7 +33,6 @@ class Anagram {
   }
 
   validAnagram2(string1, string2){
-    // add whatever parameters you deem necessary - good luck!
     let map1 = {};
     let map2 = {};
     for(let char of string1) {
