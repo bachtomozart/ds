@@ -37,7 +37,7 @@ class SumZero {
 
   findZeroPair2(input, i=0, j=(input.length-1)) {
     this.recursiveCounter++;
-    console.log(`i-> ${i}-${input[i]}, j -> ${j}-${input[j]}`);
+    // console.log(`i-> ${i}-${input[i]}, j -> ${j}-${input[j]}`);
     if(i >= j) return new Array();
     let sum = input[i] + input[j];
     if(sum === 0) {
