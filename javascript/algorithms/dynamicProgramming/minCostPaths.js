@@ -2,8 +2,6 @@
 
 const Dynamic = require('./dynamic');
 
-
-
 class MCP extends Dynamic {
 
   constructor() {
