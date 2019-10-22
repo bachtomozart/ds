@@ -113,15 +113,15 @@ class QuadraticProbingHash {
 
 (() => {
   let hash = new QuadraticProbingHash(10);
-  hash.add("Govindarajan");
-  hash.add("Panneerselvam");
-  hash.add("Valarmathi");
-  hash.add("Janaki");
-  hash.add("Swetha");
-  hash.add("Abhinav");
-  hash.add("World");
-  hash.has("Govindarajan")
-  hash.has("Valarmathi")
-  hash.has("World")
+  hash.add('Mozart');
+  hash.add('Beethoven');
+  hash.add('Tchaikovsky');
+  hash.add('Hello');
+  hash.add('World');
+  hash.add('World');
+  hash.has('Mozart');
+  hash.has('Beethoven');
+  hash.has('World');
+  hash.has('Hello');
   hash.printAll();
 })();

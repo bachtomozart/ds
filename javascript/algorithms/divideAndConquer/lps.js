@@ -37,7 +37,6 @@ const demo = () => {
   let lps = new LPS();
   lps.findMaxPalindrome('MOM');
   lps.findMaxPalindrome('MADAMOISELLE');
-  lps.findMaxPalindrome('GOVIND');
 }
 
 demo();

@@ -53,7 +53,7 @@ class Reverse {
 
 const demo = () => {
   let rev = new Reverse();
-  rev.getReverse('Govind');
+  rev.getReverse('Bach');
 }
 
 demo();

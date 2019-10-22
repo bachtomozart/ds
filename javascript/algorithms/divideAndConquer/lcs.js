@@ -24,7 +24,6 @@ class LCS {
 const demo = () => {
   let lcs = new LCS();
   lcs.getLCS('elephant', 'erephant');
-  lcs.getLCS('Governmentofindia', 'Govindarajan');
 }
 
 demo();
