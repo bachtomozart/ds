@@ -14,13 +14,13 @@ class ArraySquares {
 
   findSame1(array1, array2) {
     let squares = new Object();
-    for(let item of array1) {
-      let square = Math.pow(item,2);
+    for (let item of array1) {
+      let square = Math.pow(item, 2);
       squares[square] = ++squares[square] || 1;
     }
-    for(let compare of array2) {
-      if(squares[compare]) {
-        if(squares[compare] > 1) {
+    for (let compare of array2) {
+      if (squares[compare]) {
+        if (squares[compare] > 1) {
           --squares[compare];
         } else {
           delete squares[compare];
@@ -36,18 +36,18 @@ class ArraySquares {
     let map1 = new Map();
     let map2 = new Map();
 
-    for(let item1 of array1) {
+    for (let item1 of array1) {
       map1.has(item1) ? map1.set(item1, map1.get(item1) + 1) : map1.set(item1, 1);
     }
 
-    for(let item2 of array2) {
+    for (let item2 of array2) {
       map2.has(item2) ? map2.set(item2, map2.get(item2) + 1) : map2.set(item2, 1);
     }
 
-    for(let [key, value] of map1.entries()) {
-      let square = Math.pow(key,2);
-      if(!map2.has(square)) return false;
-      if(map2.get(square) !== value) return false; 
+    for (let [key, value] of map1.entries()) {
+      let square = Math.pow(key, 2);
+      if (!map2.has(square)) return false;
+      if (map2.get(square) !== value) return false;
     }
 
     return true;
@@ -56,8 +56,8 @@ class ArraySquares {
 
 const demo = () => {
   let as = new ArraySquares();
-  as.getSame(new Array(1,2,3), new Array(4,1,9));
-  as.getSame(new Array(1,2,1), new Array(1,4,4));
+  as.getSame(new Array(1, 2, 3), new Array(4, 1, 9));
+  as.getSame(new Array(1, 2, 1), new Array(1, 4, 4));
 }
 
 demo();

@@ -14,21 +14,22 @@ class CheckDuplicates {
 
   areThereDuplicates1(inputs) {
     let hashSet = new Set();
-    for(let char of inputs) {
-        if(hashSet.has(char)) {
-            return true;
-        } else {
-            hashSet.add(char);
-        }
+    for (let char of inputs) {
+      if (hashSet.has(char)) {
+        return true;
+      } else {
+        hashSet.add(char);
+      }
     }
     return false;
   }
 
   areThereDuplicates2(inputs) {
-    let i = 0, j = 1;
-    inputs.sort((a,b) => a > b);
-    while(j < inputs.length) {
-      if(inputs[i] === inputs[j]) {
+    let i = 0,
+      j = 1;
+    inputs.sort((a, b) => a > b);
+    while (j < inputs.length) {
+      if (inputs[i] === inputs[j]) {
         return true;
       } else {
         i++;
@@ -45,9 +46,9 @@ class CheckDuplicates {
 
 const demo = () => {
   let cd = new CheckDuplicates();
-  cd.checkDuplicates(1,2,3);
-  cd.checkDuplicates(1,2,2);
-  cd.checkDuplicates('a','b','c','a');
+  cd.checkDuplicates(1, 2, 3);
+  cd.checkDuplicates(1, 2, 2);
+  cd.checkDuplicates('a', 'b', 'c', 'a');
 }
 
 demo();

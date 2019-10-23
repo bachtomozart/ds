@@ -18,15 +18,16 @@ class Reverse {
 
   reverse1(string) {
     let output = '';
-    for(let i = (string.length-1);i>=0;i--) {
+    for (let i = (string.length - 1); i >= 0; i--) {
       output += string[i];
     }
     return output;
   }
 
   reverse2(stringArray) {
-    let i=0, j=stringArray.length-1;
-    while(i <= j) {
+    let i = 0,
+      j = stringArray.length - 1;
+    while (i <= j) {
       console.log(`i -> ${i}, j-> ${j}, stringArray[i] -> ${stringArray[i]}, stringArray[j] -> ${stringArray[j]}`);
       let temp = stringArray[i];
       stringArray[i] = stringArray[j];
@@ -39,14 +40,14 @@ class Reverse {
 
   reverseRecursive1(stringArray) {
     console.log(JSON.stringify(stringArray));
-    if(!stringArray.length) return '';
-    return stringArray.splice(stringArray.length-1,1) + this.reverseRecursive1(stringArray);
+    if (!stringArray.length) return '';
+    return stringArray.splice(stringArray.length - 1, 1) + this.reverseRecursive1(stringArray);
   }
 
   reverseRecursive2(stringArray) {
     console.log(JSON.stringify(stringArray));
-    if(!stringArray.length) return '';
-    let character = stringArray.splice(0,1);
+    if (!stringArray.length) return '';
+    let character = stringArray.splice(0, 1);
     return this.reverseRecursive2(stringArray) + character;
   }
 }

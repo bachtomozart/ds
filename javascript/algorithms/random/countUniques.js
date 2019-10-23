@@ -16,19 +16,21 @@ class CountUnique {
   }
 
   findUniques1(input) {
-    if(input.length <= 1) return input.length;
+    if (input.length <= 1) return input.length;
     let set = new Set();
     for (let item of input) {
-      if(!set.has(item)) set.add(item);
+      if (!set.has(item)) set.add(item);
     }
     return set.size;
   }
 
   findUniques2(input) {
-    if(input.length <= 1) return input.length;
-    let i=0,j=i+1, result = 0;
-    while(i < input.length) {
-      if(input[j] !== input[i]) {
+    if (input.length <= 1) return input.length;
+    let i = 0,
+      j = i + 1,
+      result = 0;
+    while (i < input.length) {
+      if (input[j] !== input[i]) {
         result++;
         i = j;
         j = i + 1;
@@ -39,15 +41,16 @@ class CountUnique {
     return result;
   }
 
-  findUniques3(input){
-    if(input.length <= 1) return input.length;
-    let i=0, j=1;
-    while(j < input.length) {
-        if(input[i] !== input[j]) {
-            i++;
-            input[i] = input[j];
-        }
-        j++;
+  findUniques3(input) {
+    if (input.length <= 1) return input.length;
+    let i = 0,
+      j = 1;
+    while (j < input.length) {
+      if (input[i] !== input[j]) {
+        i++;
+        input[i] = input[j];
+      }
+      j++;
     }
     return i + 1;
   }
@@ -56,8 +59,8 @@ class CountUnique {
 
 const demo = () => {
   let cu = new CountUnique();
-  cu.getUniques(new Array(1,1,1,1,1,1,1,2));
-  cu.getUniques(new Array(1,2,3,4,4,4,7,7,12,12,13));
+  cu.getUniques(new Array(1, 1, 1, 1, 1, 1, 1, 2));
+  cu.getUniques(new Array(1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13));
   cu.getUniques([11]);
   cu.getUniques([]);
 }
