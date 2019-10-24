@@ -15,51 +15,51 @@ class Anagram {
   }
 
   validAnagram1(string1, string2) {
-    if(string1.length !== string2.length)
+    if (string1.length !== string2.length)
       return false;
     let map1 = new Map();
     let map2 = new Map();
-    for(let char of string1) {
+    for (let char of string1) {
       map1.has(char) ? map1.set(char, map1.get(char) + 1) : map1.set(char, 1);
     }
-    for(let char of string2) {
+    for (let char of string2) {
       map2.has(char) ? map2.set(char, map2.get(char) + 1) : map2.set(char, 1);
     }
-    for(let [key,value] of map1.entries()) {
-      if(!map2.has(key)) return false;
-      if(map2.get(key) !== value) return false;
+    for (let [key, value] of map1.entries()) {
+      if (!map2.has(key)) return false;
+      if (map2.get(key) !== value) return false;
     }
     return true;
   }
 
-  validAnagram2(string1, string2){
-    if(string1.length !== string2.length)
+  validAnagram2(string1, string2) {
+    if (string1.length !== string2.length)
       return false;
     let map1 = {};
     let map2 = {};
-    for(let char of string1) {
-        map1[char] = ++map1[char] || 1;
+    for (let char of string1) {
+      map1[char] = ++map1[char] || 1;
     }
-    for(let char of string2) {
-        map2[char] = ++map2[char] || 1;
+    for (let char of string2) {
+      map2[char] = ++map2[char] || 1;
     }
     let keys = Object.keys(map1);
-    for(let key of keys) {
-        if(!map2[key]) return false;
-        if(map2[key] !== map1[key]) return false;
+    for (let key of keys) {
+      if (!map2[key]) return false;
+      if (map2[key] !== map1[key]) return false;
     }
     return true;
   }
 
   validAnagram3(string1, string2) {
-    if(string1.length !== string2.length)
+    if (string1.length !== string2.length)
       return false;
     let map = new Map();
-    for(let char of string1) {
+    for (let char of string1) {
       map.has(char) ? map.set(char, map.get(char) + 1) : map.set(char, 1);
     }
-    for(let char of string2) {
-      if(!map.has(char)) return false;
+    for (let char of string2) {
+      if (!map.has(char)) return false;
       map.get(char) > 1 ? map.set(char, map.get(char) - 1) : map.delete(char);
     }
     return map.size === 0;
@@ -69,7 +69,7 @@ class Anagram {
 const demo = () => {
   let a = new Anagram();
   a.isAnagram('cinema', 'iceman');
-  a.isAnagram('aaaz','zzaa');
+  a.isAnagram('aaaz', 'zzaa');
 }
 
 demo();

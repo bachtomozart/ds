@@ -26,6 +26,21 @@ class MaxSubArray {
     return globalMax;
   }
 
+  maxSubarraySum(num, subSize) {
+    if (subSize > num.length) return null;
+    let max = 0,
+      temp = 0;
+    for (let x = 0; x < subSize; x++) {
+      max += num[x];
+    }
+    temp = max;
+    for (let i = 1, j = subSize - 1; j < (num.length - 1); i++, j++) {
+      temp = temp - num[i - 1] + num[j + 1];
+      max = Math.max(temp, max);
+    }
+    return max;
+  }
+
 }
 
 const demo = () => {
