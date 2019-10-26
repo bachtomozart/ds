@@ -9,7 +9,8 @@ class NaiveSearch {
   search(input, pattern) {
     let result = this.searchPattern(input, pattern);
     let count = this.searchCounts(input, pattern);
-    console.log(`${pattern} -> ${result} with ${count}`);
+    let count2 = this.search2(input, pattern);
+    console.log(`${pattern} -> ${result} with ${count} || ${count2}`);
   }
 
   searchPattern(input, pattern) {
@@ -52,7 +53,20 @@ class NaiveSearch {
         if(j === pattern.length) count++;
       }
     }
-    return count > 0 ? count : -1;
+    return count;
+  }
+
+  search2(long, short) {
+    let count = 0;
+    for(let i = 0; i < long.length; i++) {
+      for(let j = 0; j < short.length; j++) {
+        if(short[j] !== long[i+j]) {
+          break;
+        }
+        if(j === short.length - 1) count++;
+      }
+    }
+    return count;
   }
 }
 
