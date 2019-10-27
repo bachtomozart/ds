@@ -19,6 +19,30 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Search - KMP",
+      "program": "${workspaceFolder}/javascript/algorithms/search/kmpSearch.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Search - Naive",
+      "program": "${workspaceFolder}/javascript/algorithms/search/naiveSearch.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Search - Binary",
+      "program": "${workspaceFolder}/javascript/algorithms/search/binarySearch.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Search - Linear",
+      "program": "${workspaceFolder}/javascript/algorithms/search/linearSearch.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Dynamic - MCP",
       "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/minCostPaths.js"
     },
