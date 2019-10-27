@@ -11,7 +11,7 @@ class SelectionSort extends Sort {
         if(input[j] < input[smallest]) 
           smallest = j;
       }
-      this.swap(input, i, smallest);
+      if(i !== smallest) this.swap(input, i, smallest);
     }
     console.log(`After Sort -> ${input}`);
     return input;
