@@ -14,19 +14,19 @@
       "type": "node",
       "request": "launch",
       "name": "Sorting - Insertion Sort",
-      "program": "${workspaceFolder}/javascript/algorithms/sort/insertionSort.js"
+      "program": "${workspaceFolder}/javascript/algorithms/sorting/insertionSort.js"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Sorting - Selection Sort",
-      "program": "${workspaceFolder}/javascript/algorithms/sort/selectionSort.js"
+      "program": "${workspaceFolder}/javascript/algorithms/sorting/selectionSort.js"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Sorting - Bubble Sort",
-      "program": "${workspaceFolder}/javascript/algorithms/sort/bubbleSort.js"
+      "program": "${workspaceFolder}/javascript/algorithms/sorting/bubbleSort.js"
     },
     {
       "type": "node",
