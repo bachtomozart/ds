@@ -13,6 +13,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Sorting - Merge Sort",
+      "program": "${workspaceFolder}/javascript/algorithms/sorting/mergeSort.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Sorting - Insertion Sort",
       "program": "${workspaceFolder}/javascript/algorithms/sorting/insertionSort.js"
     },
