@@ -36,6 +36,7 @@ class MergeSort extends Sort {
     output = [...output,...arr1Remaining,...arr2Remaining];
     return output;
   }
+
 }
 
 const demo = () => {
