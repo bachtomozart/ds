@@ -146,22 +146,18 @@ class SinglyLinkedList {
   reverse() {
     if(this.isEmpty())
       return undefined;
-
-    let previous = this.head;
-    let current = this.head.next;
-    let next = current.next;
+    let previous = null;
+    let current = this.head;
+    let next = null;
     for(let i=0;i<this.length;i++) {
-      if(i > 0) {
-        previous = current;
-        current = next;
-        next = current && current.next;
-      }
-      if(current) current.next = previous;
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
     }
     let temp = this.head;
     this.head = this.tail;
     this.tail = temp;
-    this.tail.next = null;
     this.print();
   }
 
