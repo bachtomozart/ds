@@ -8,6 +8,7 @@ class Sort {
   swap(input, pos1, pos2) {
     [input[pos2], input[pos1]] = [input[pos1], input[pos2]];
   }
+
 }
 
 module.exports = Sort;
