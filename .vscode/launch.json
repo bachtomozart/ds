@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/datastructures/linkedlist/dll.js"
+      "program": "${workspaceFolder}/javascript/datastructures/tree/avl.js"
     },
     {
       "type": "node",
