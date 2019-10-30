@@ -7,8 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Random",
-      "program": "${workspaceFolder}/javascript/datastructures/linkedlist/sll.js"
+      "name": "Scratch",
+      "program": "${workspaceFolder}/javascript/datastructures/linkedlist/dll.js"
     },
     {
       "type": "node",
@@ -265,25 +265,25 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Hashing - DH",
+      "name": "Hashing - Double Hashing",
       "program": "${workspaceFolder}/javascript/datastructures/hashing/dhHash.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Hashing - LP",
+      "name": "Hashing - Linear Probing",
       "program": "${workspaceFolder}/javascript/datastructures/hashing/lpHash.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Hashing - QP",
+      "name": "Hashing - Quadratic Probing",
       "program": "${workspaceFolder}/javascript/datastructures/hashing/qpHash.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Hashing - DC",
+      "name": "Hashing - Direct Chaining",
       "program": "${workspaceFolder}/javascript/datastructures/hashing/dcHash.js"
     },
     {
@@ -307,14 +307,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Tree - Binary Tree",
-      "program": "${workspaceFolder}/javascript/datastructures/tree/binaryTree.js"
+      "name": "Tree - Binary Search Tree",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/binarySearchTree.js"
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Tree - Binary Search Tree",
-      "program": "${workspaceFolder}/javascript/datastructures/tree/binarySearchTree.js"
+      "name": "Tree - Binary Tree",
+      "program": "${workspaceFolder}/javascript/datastructures/tree/binaryTree.js"
     },
     {
       "type": "node",
