@@ -127,6 +127,73 @@ class AVL {
     let right = this.getHeight(node.right);
     return 1 + Math.max(left, right);
   }
+
+  traverse(type) {
+    let output = [];
+    this[type.toLowerCase() + 'Traversal']((node) => output.push(node.value), this.root);
+    console.log(`${type.toLowerCase()} -> ${output.join(' -> ')}`);
+  }
+
+  bfsTraversal(cb, node = this.root) {
+    if(!node) 
+      return undefined;
+    let queue = [node];
+    while(queue.length > 0) {
+      let current = queue.shift();
+      cb(current);
+      if(current.left) queue.push(current.left);
+      if(current.right) queue.push(current.right);
+    }
+  }
+
+  // LNR
+  inorderTraversal(cb, node = this.root) {
+    if(!node) return;
+    this.inorderTraversal(cb, node.left);
+    cb(node);
+    this.inorderTraversal(cb, node.right);
+  }
+
+  // RNL
+  outorderTraversal(cb, node = this.root) {
+    if(!node) return;
+    this.inorderTraversal(cb, node.right);
+    cb(node);
+    this.inorderTraversal(cb, node.left);
+  }
+
+  // NLR
+  preorderTraversal(cb, node = this.root) {
+    if(!node) return;
+    cb(node);
+    this.inorderTraversal(cb, node.left);
+    this.inorderTraversal(cb, node.right);
+  }
+
+  // LRN
+  postorderTraversal(cb, node = this.root) {
+    if(!node) return;
+    this.inorderTraversal(cb, node.left);
+    this.inorderTraversal(cb, node.right);
+    cb(node);
+  }
+
+  // RLN
+  oustorderTraversal(cb, node = this.root) {
+    if(!node) return;
+    this.inorderTraversal(cb, node.right);
+    this.inorderTraversal(cb, node.left);
+    cb(node);
+  }
+
+}
+
+const replacer = (key, value) => {
+  // Filtering out properties
+  if (value === null) {
+    return undefined;
+  }
+  return value;
 }
 
 const demo = () => {
@@ -134,31 +201,47 @@ const demo = () => {
   tree.insert(30);
   tree.insert(20);
   tree.insert(10);
-  console.log(JSON.stringify(tree.root));
+  console.log(JSON.stringify(tree.root, replacer));
   tree.destroy();
   tree.insert(30);
   tree.insert(20);
   tree.insert(25);
-  console.log(JSON.stringify(tree.root));
+  console.log(JSON.stringify(tree.root, replacer));
   tree.destroy();
   tree.insert(30);
   tree.insert(40);
   tree.insert(50);
-  console.log(JSON.stringify(tree.root));
+  console.log(JSON.stringify(tree.root, replacer));
   tree.destroy();
   tree.insert(30);
   tree.insert(40);
   tree.insert(35);
-  console.log(JSON.stringify(tree.root));
+  console.log(JSON.stringify(tree.root, replacer));
   tree.destroy();
   tree.insert(30);
   tree.insert(20);
   tree.insert(10);
   tree.insert(15);
-  console.log(JSON.stringify(tree.root));
+  console.log(JSON.stringify(tree.root, replacer));
   tree.delete(30);
-  console.log(JSON.stringify(tree.root));
+  console.log(JSON.stringify(tree.root, replacer));
   tree.destroy();
+  tree.insert(1);
+  tree.insert(2);
+  tree.insert(3);
+  tree.insert(4);
+  tree.insert(5);
+  tree.insert(6);
+  tree.insert(7);
+  tree.insert(8);
+  tree.insert(9);
+  console.log(JSON.stringify(tree.root, replacer));
+  tree.traverse('bfs');
+  tree.traverse('inorder');
+  tree.traverse('outorder');
+  tree.traverse('preorder');
+  tree.traverse('postorder');
+  tree.traverse('oustorder');
 }
 
 demo();
