@@ -51,7 +51,7 @@ class PriorityQueue {
       }
     } else if(!this.comparator(this.store[parentPos], this.store[leftPos]) ||
     !this.comparator(this.store[parentPos], this.store[rightPos])) {
-      if(this.store[leftPos] > this.store[rightPos]) {
+      if(this.comparator(this.store[leftPos],this.store[rightPos])) {
         this.swap(parentPos, leftPos);
         this.heapifyDown(leftPos);
       } else {
