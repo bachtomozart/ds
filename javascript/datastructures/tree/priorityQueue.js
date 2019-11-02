@@ -93,5 +93,51 @@ class MaxPriorityQueue extends PriorityQueue {
 
 const demo = () => {
   let minPriorityQueue = new MinPriorityQueue();
+  minPriorityQueue.enqueue(5);
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.enqueue(3);
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.enqueue(2);
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.enqueue(4);
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.enqueue(1);
+  console.log(`${[...minPriorityQueue.store]}`);
+  console.log(`--------`);
+  minPriorityQueue.dequeue()
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.dequeue()
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.dequeue()
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.dequeue()
+  console.log(`${[...minPriorityQueue.store]}`);
+  minPriorityQueue.dequeue()
+  console.log(`${[...minPriorityQueue.store]}`);
+  console.log(`--------`);
   let maxPriorityQueue = new MaxPriorityQueue();
+  maxPriorityQueue.enqueue(1);
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.enqueue(3);
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.enqueue(2);
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.enqueue(4);
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.enqueue(5);
+  console.log(`${[...maxPriorityQueue.store]}`);
+  console.log(`--------`);
+  maxPriorityQueue.dequeue()
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.dequeue()
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.dequeue()
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.dequeue()
+  console.log(`${[...maxPriorityQueue.store]}`);
+  maxPriorityQueue.dequeue()
+  console.log(`${[...maxPriorityQueue.store]}`);
+  console.log(`--------`);
 }
+
+demo();
