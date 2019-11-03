@@ -20,9 +20,10 @@ class MaxCoins {
   
   findMaxCoins(nums, pos = 0) {
     if(pos < 0 || pos >= nums.length) return 0;
-    let newNums = JSON.parse(JSON.stringify(nums)); newNums.splice(pos,1);
+    let newNums = nums.slice(pos+1, nums.length);
+    let skipNums = [...[nums[pos]], ...nums.slice(pos+2, nums.length)];
     let burst = this.burst(nums,pos) + this.findMaxCoins(newNums, pos);
-    let skip = this.findMaxCoins(nums, pos+1);
+    let skip = this.burst(nums, pos+1) + this.findMaxCoins(skipNums, pos);
     return Math.max(burst, skip);
   }
 
@@ -41,7 +42,19 @@ class MaxCoins {
 const maxCoins = (nums) => {
   let mc = new MaxCoins();
   let result = mc.getMaxCoins(nums);
+  console.log(`${result}`);
   return result;
 };
 
-maxCoins([3,1,5,8]);
+// maxCoins([3,1,5,8]);
+
+var numTilePossibilities = function(tiles) {
+  let result = new Set();
+  for(let i=0;i<tiles.length;i++) {
+      result.add(tiles[i]);
+      let tempResult = new Set([...result]);
+  }
+  return result.size;
+};
+
+numTilePossibilities('AAB')

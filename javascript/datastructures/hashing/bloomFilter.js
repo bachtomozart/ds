@@ -62,6 +62,7 @@ const demo = () => {
   filter.has('Valarmathi');
   filter.has('World');
   filter.has('Hello');
+  filter.has('Help');
   filter.printAll();
 };
 

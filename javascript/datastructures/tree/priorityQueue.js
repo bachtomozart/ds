@@ -27,8 +27,7 @@ class PriorityQueue {
   }
 
   dequeue() {
-    let result = this.store[0];
-    this.store[0] = this.store.pop();
+    let result = this.store.shift();
     this.heapifyDown();
     return result;
   }
@@ -141,3 +140,5 @@ const demo = () => {
 }
 
 demo();
+
+module.exports = PriorityQueue;
