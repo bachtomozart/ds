@@ -139,6 +139,6 @@ const demo = () => {
   console.log(`--------`);
 }
 
-demo();
+// demo();
 
 module.exports = PriorityQueue;

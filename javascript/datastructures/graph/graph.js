@@ -73,7 +73,7 @@ class Graph {
     for (let vertex of vertices) {
       this.topologicalVisit(new Vertex(vertex), cb);
     }
-    console.log(`${[...stack]}`);
+    console.log(`Topological Sort -> ${[...stack]}`);
   }
 
   topologicalVisit(vertex, cb) {
@@ -88,7 +88,7 @@ class Graph {
     console.log(`${[...graph.adjacencyList].reduce((acc, item) => acc + '\n' + JSON.stringify(item), [])}`);
   }
 
-  djikstra(startVertex) {
+  dijkstra(startVertex) {
     let priorityQueue = new PriorityQueue((a,b) => a.weight < b.weight);
     let distances = new Map();
     priorityQueue.enqueue(new Vertex(startVertex, 0));
@@ -110,7 +110,7 @@ class Graph {
         }
       }
     }
-    console.log(`${[...distances]}`);
+    console.log(`Dijkstra -> ${[...distances]}`);
   }
 
   prims(startVertex) {
@@ -148,7 +148,7 @@ class Graph {
       path.push(vertex);
       distance += distances.get(vertex);
     }
-    console.log(`The MST for ${startVertex} is done by the path ${path.join(' -> ')} with distance ${distance}`);
+    console.log(`Prims ${startVertex} is done by the path ${path.join(' -> ')} with distance ${distance}`);
   }
 }
 
@@ -176,8 +176,6 @@ const demo = () => {
   graph.addEdge('E', 'H');
   graph.addEdge('E', 'F');
   graph.addEdge('F', 'G');
-  graph.bfs();
-  graph.dfs();
   graph.topologicalSort();
   graph.initialize();
   graph.addEdge('E', 'B', 4);
@@ -188,7 +186,7 @@ const demo = () => {
   graph.addEdge('A', 'C', 6);
   graph.addEdge('A', 'D', 6);
   graph.addEdge('C', 'D', 2);
-  graph.djikstra('E');
+  graph.dijkstra('E');
   graph.initialize(true);
   graph.addEdge('A', 'B', 15);
   graph.addEdge('A', 'C', 20);
