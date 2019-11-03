@@ -61,6 +61,7 @@ const demo = () => {
   filter.has('Beethoven');
   filter.has('World');
   filter.has('Hello');
+  filter.has('Help');
   filter.printAll();
 };
 

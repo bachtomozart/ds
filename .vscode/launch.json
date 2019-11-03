@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/datastructures/tree/priorityQueue.js"
+      "program": "${workspaceFolder}/javascript/datastructures/graph/graph.js"
     },
     {
       "type": "node",
