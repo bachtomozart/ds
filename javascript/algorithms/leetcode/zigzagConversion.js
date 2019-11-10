@@ -6,6 +6,7 @@ class ZigZagConversion {
   }
 
   getConversion(s, numRows) {
+    if(numRows === 1) return s;
     let output = "";
     let incrementer = numRows + (numRows - 2);
     for (let i = 0; i < numRows; i++) {
@@ -29,7 +30,7 @@ class ZigZagConversion {
 
 const demo = () => {
   let zzc = new ZigZagConversion();
-  zzc.getConversion("PAYPALISHIRING", 5);
+  zzc.getConversion("PAYPALISHIRING", 1);
 }
 
 demo();
