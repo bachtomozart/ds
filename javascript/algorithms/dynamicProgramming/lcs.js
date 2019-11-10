@@ -25,6 +25,19 @@ class LCS extends Dynamic {
     this.printCounts();
   }
 
+  check(input, set, start=0, end = start + 1) {
+    if(inputPos > input.length) return -1;
+    let sub = input.slice(start, end);
+    let same, diff1, diff2;
+    if(set.has(sub)) {
+      same = 1 + this.check(input, end + 1);
+    } else {
+      diff1 = this.check(input, start, end + 1);
+      diff2 = this.check(input, start+1);
+    }
+    return Math.min(same, diff1, diff2);
+  }
+
   findLCSRecursive(string1, string2, pos1=0, pos2=0) {
     this.recursiveCount++;
     if(pos1 >= string1.length || pos2 >= string2.length) return 0;
