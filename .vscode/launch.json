@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/algorithms/leetcode/substringKChars.js"
+      "program": "${workspaceFolder}/javascript/algorithms/leetcode/zigzagConversion.js"
     },
     {
       "type": "node",
