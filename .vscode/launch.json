@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/algorithms/leetcode/longestPalindromeSubstring.js"
+      "program": "${workspaceFolder}/javascript/algorithms/leetcode/intToRoman.js"
     },
     {
       "type": "node",
