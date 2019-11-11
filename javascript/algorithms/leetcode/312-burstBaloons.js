@@ -1,11 +1,11 @@
 
-
+// https://leetcode.com/problems/burst-balloons/
 
 class MaxCoins {
   constructor() {
     this.map = new Map();
   }
-  
+
   reInitialize(nums) {
     this.map = new Map([
         [-1, 1],
@@ -17,7 +17,7 @@ class MaxCoins {
     this.reInitialize(nums);
     return this.findMaxCoins(nums);
   }
-  
+
   findMaxCoins(nums, pos = 0) {
     if(pos < 0 || pos >= nums.length) return 0;
     let newNums = nums.slice(pos+1, nums.length);
@@ -31,12 +31,12 @@ class MaxCoins {
     let result = this.access(nums,pos-1) * this.access(nums,pos) * this.access(nums,pos+1);
     return result;
   }
-  
+
   access(nums, pos) {
     if (pos < 0 || pos >= nums.length) return 1;
     return nums[pos];
   }
-  
+
 }
 
 const maxCoins = (nums) => {

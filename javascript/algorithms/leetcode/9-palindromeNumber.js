@@ -1,6 +1,7 @@
 /**
  * @param {number} x
  * @return {boolean}
+ * https://leetcode.com/problems/palindrome-number
  */
 var isPalindrome = function(x) {
   let s = x.toString();
