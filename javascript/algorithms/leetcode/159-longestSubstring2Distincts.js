@@ -1,4 +1,10 @@
 'use strict'
+
+/**
+ * @param {string} s
+ * @return {number}
+ * https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters
+ */
 var lengthOfLongestSubstringTwoDistinct = function (s) {
   let latest = new Map(),
     first = new Map(),

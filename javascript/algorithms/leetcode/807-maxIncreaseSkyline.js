@@ -1,5 +1,10 @@
 'use strict'
 
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ * https://leetcode.com/problems/max-increase-to-keep-city-skyline
+ */
 var maxIncreaseKeepingSkyline = function (grid) {
   let leftRightMax = new Array(grid.length).fill(0);
   let topDownMax = new Array(grid.length).fill(0);

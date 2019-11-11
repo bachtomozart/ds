@@ -1,5 +1,7 @@
 'use strict'
 
+// https://leetcode.com/problems/merge-two-binary-trees/
+
 function TreeNode(val, left = null, right = null) {
   this.val = val;
   this.left = left;
