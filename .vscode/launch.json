@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/algorithms/leetcode/intToEnglishWords.js"
+      "program": "${workspaceFolder}/javascript/algorithms/random/permutations.js"
     },
     {
       "type": "node",
