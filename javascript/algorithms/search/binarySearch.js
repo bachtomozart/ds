@@ -2,7 +2,11 @@
 
 class BinarySearch {
   constructor() {
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> ff012383f5f2a5a37862efa005633f58a47da31c
   }
 
   search(items, itemToSearch) {

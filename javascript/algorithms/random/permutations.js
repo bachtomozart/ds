@@ -1,8 +1,7 @@
 'use strict'
 
 /**
- *
- * @param {Array} nums
+ * @param {Array} nums 
  * @returns {Array} result
  */
 function findPermutations(nums) {

@@ -135,7 +135,7 @@ class AVL {
   }
 
   bfsTraversal(cb, node = this.root) {
-    if(!node)
+    if(!node) 
       return undefined;
     let queue = [node];
     while(queue.length > 0) {

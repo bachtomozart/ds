@@ -11,7 +11,7 @@ class QuickSort extends Sort {
   }
 
   quickSort(input, start=0, end=input.length-1) {
-    if(start >= end) return;
+    if(start >= end) return; 
     let pivot = this.pivot(input, start, end);
     this.quickSort(input, start, pivot-1);
     this.quickSort(input, pivot+1, end);

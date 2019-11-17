@@ -20,7 +20,11 @@ function productOfArray(arr) {
 
 // SAMPLE INPUT/OUTPUT
 // recursiveRange(6) // 21
+<<<<<<< HEAD
 // recursiveRange(10) // 55
+=======
+// recursiveRange(10) // 55 
+>>>>>>> ff012383f5f2a5a37862efa005633f58a47da31c
 
 function recursiveRange(num) {
   if (num === 1) return 1;
@@ -33,13 +37,21 @@ function recursiveRange(num) {
 // fib(35) // 9227465
 
 function fib(num) {
+<<<<<<< HEAD
   // add whatever parameters you deem necessary - good luck!
+=======
+  // add whatever parameters you deem necessary - good luck!  
+>>>>>>> ff012383f5f2a5a37862efa005633f58a47da31c
   if (num === 0) return 0;
   if (num === 1) return 1;
   return fib(num - 2) + fib(num - 1);
 }
 
+<<<<<<< HEAD
 // 1.Others Solution
+=======
+// 1.Others Solution 
+>>>>>>> ff012383f5f2a5a37862efa005633f58a47da31c
 
 function power(base, exponent) {
   if (exponent === 0) return 1;

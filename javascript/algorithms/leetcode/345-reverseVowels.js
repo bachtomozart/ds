@@ -1,7 +1,7 @@
 'use strict'
 
 /**
- * @param {string} s
+ * @param {string} s 
  * @return {string} s
  * https://leetcode.com/problems/reverse-vowels/
  */

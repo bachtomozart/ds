@@ -3,7 +3,6 @@
 class NaiveSearch {
 
   constructor() {
-
   }
 
   search(input, pattern) {
