@@ -1,7 +1,6 @@
 'use strict'
 
 /**
- * 
  * @param {Array} nums 
  * @returns {Array} result
  */

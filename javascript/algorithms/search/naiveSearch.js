@@ -3,7 +3,6 @@
 class NaiveSearch {
 
   constructor() {
-    
   }
 
   search(input, pattern) {
@@ -27,7 +26,7 @@ class NaiveSearch {
             break;
           }
         }
-        if(j === pattern.length) found = true; 
+        if(j === pattern.length) found = true;
       }
       if(found) break;
       else i++;

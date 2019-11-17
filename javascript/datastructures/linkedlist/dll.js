@@ -124,7 +124,7 @@ class DoublyLinkedList {
   remove(pos) {
     if(this.isEmpty() || pos >= this.length)
       return undefined;
-    
+
     let current = this.head;
     for(let counter =0;counter<pos;counter++) {
       current = current.next;
@@ -140,7 +140,7 @@ class DoublyLinkedList {
   reverse() {
     if(this.isEmpty())
       return undefined;
-    
+
     let current = this.head;
     while(current) {
       let next = current.next;

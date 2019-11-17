@@ -2,7 +2,6 @@
 
 class LongestSubstring {
   constructor() {
-    
   }
 
   getLS(input) {

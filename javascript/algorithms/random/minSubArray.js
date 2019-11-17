@@ -41,7 +41,7 @@ class MinSubArray {
     let start = 0;
     let end = 0;
     let minLen = Infinity;
-   
+
     while (start < nums.length) {
       // if current window doesn't add up to the given sum then 
       // move the window to right
@@ -61,7 +61,6 @@ class MinSubArray {
         break;
       }
     }
-   
     return minLen === Infinity ? 0 : minLen;
   }
 }

@@ -31,7 +31,7 @@ class CountCharacters {
 
 const demo = () => {
   let cc = new CountCharacters();
-  cc.getCharacterCount('Govindarajan Panneerselvam');
+  cc.getCharacterCount('Wolfgang Amadeus Mozart');
 }
 
 demo();

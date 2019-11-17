@@ -51,15 +51,14 @@ class BloomFilter {
 
 const demo = () => {
   let filter = new BloomFilter(10, true);
-  filter.add('Govindarajan');
-  filter.add('Panneerselvam');
-  filter.add('Valarmathi');
-  filter.add('Janaki');
-  filter.add('Swetha');
-  filter.add('Abhinav');
+  filter.add('Mozart');
+  filter.add('Beethoven');
+  filter.add('Tchaikovsky');
+  filter.add('Hello');
   filter.add('World');
-  filter.has('Govindarajan');
-  filter.has('Valarmathi');
+  filter.add('World');
+  filter.has('Mozart');
+  filter.has('Beethoven');
   filter.has('World');
   filter.has('Hello');
   filter.has('Help');
