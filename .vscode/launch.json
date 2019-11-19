@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/algorithms/leetcode/14-longestCommonPrefix.js"
+      "program": "${workspaceFolder}/javascript/algorithms/leetcode/322-coinChange.js"
     },
     {
       "type": "node",
