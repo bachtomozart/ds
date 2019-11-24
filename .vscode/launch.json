@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/algorithms/leetcode/15-threeSum.js"
+      "program": "${workspaceFolder}/javascript/algorithms/leetcode/849-maxDistanceToClosest.js"
     },
     {
       "type": "node",
