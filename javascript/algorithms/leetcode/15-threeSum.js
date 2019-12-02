@@ -4,25 +4,75 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+let recursiveCount = 0;
+let tdCount = 0;
 var threeSum = function (nums) {
   let set = new Set(nums);
+
+  // Recursive
   let result = new Set();
-  three(result, set, nums);
-  console.log(`${[...result]}`)
+  let added = new Set();
+  three(nums, set, (val) => {
+    let start = val[0];
+    let end = val[1];
+    let inverse = val[2];
+    if(!added.has(start) || !added.has(end) || !added.has(inverse)) {
+      added.add(start);
+      added.add(end);
+      added.add(inverse);
+      result.add(val.join(''));
+    }
+  });
+  console.log(`${recursiveCount} -> ${[...result]}`)
+
+  let dp = Array.from({
+    length: nums.length
+  }, () => Array(nums.length).fill(false));
+  let tdResult = new Set();
+  added = new Set();
+  threeTopDown(nums, set, dp, (val) => {
+    // tdResult.add(val.sort((a, b) => a - b).join(''));
+    let start = val[0];
+    let end = val[1];
+    let inverse = val[2];
+    if(!added.has(start) || !added.has(end) || !added.has(inverse)) {
+      added.add(start);
+      added.add(end);
+      added.add(inverse);
+      tdResult.add(val.join(''));
+    }
+  });
+  console.log(`${tdCount} -> ${[...tdResult]}`)
 };
 
-let three = (result, set, nums, start = 0, end = nums.length - 1) => {
+let three = (nums, set, cb, start = 0, end = nums.length - 1) => {
   if (start >= end) return;
+  recursiveCount++;
   let sum = nums[start] + nums[end];
   let inverse = 0 - sum;
   if (set.has(inverse) && (inverse !== nums[start] && inverse !== nums[end])) {
-    let temp = [nums[start], nums[end], inverse];
-    temp.sort((a, b) => a - b);
-    result.add(temp[0].toString() + ',' + temp[1].toString() + ',' + temp[2].toString());
+    cb([nums[start], nums[end], inverse]);
   }
-  three(result, set, nums, start + 1, end);
-  three(result, set, nums, start, end - 1);
-  return result;
+  three(nums, set, cb, start + 1, end);
+  three(nums, set, cb, start, end - 1);
+  return;
+};
+
+let threeTopDown = (nums, set, dp, cb, start = 0, end = nums.length - 1) => {
+  if (start >= end) return;
+  if (dp[start][end]) return;
+  tdCount++;
+  let sum = nums[start] + nums[end];
+  let inverse = 0 - sum;
+  if (set.has(inverse) && (inverse !== nums[start] && inverse !== nums[end])) {
+    // console.log(`${start} - ${end}`);
+    // console.log(`${nums[start]} - ${nums[end]}\n`);
+    cb([nums[start], nums[end], inverse]);
+    dp[start][end] = true;
+  }
+  threeTopDown(nums, set, dp, cb, start + 1, end);
+  threeTopDown(nums, set, dp, cb, start, end - 1);
+  return;
 };
 
 threeSum([-1, 0, 1, 2, -1, -4]);

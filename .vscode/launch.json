@@ -7,8 +7,26 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Scratch",
-      "program": "${workspaceFolder}/javascript/algorithms/random/nQueens.js"
+      "name": "Leetcode",
+      "program": "${workspaceFolder}/javascript/algorithms/leetcode/32-longestValidParantheses.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Random",
+      "program": "${workspaceFolder}/javascript/algorithms/random/binomialCoefficient.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "DP",
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/paintHouse.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Backtracking",
+      "program": "${workspaceFolder}/javascript/algorithms/backtracking/piSplit.js"
     },
     {
       "type": "node",
