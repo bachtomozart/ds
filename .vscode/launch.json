@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Leetcode",
-      "program": "${workspaceFolder}/javascript/algorithms/leetcode/32-longestValidParantheses.js"
+      "program": "${workspaceFolder}/javascript/algorithms/leetcode/test.js"
     },
     {
       "type": "node",
@@ -20,7 +20,7 @@
       "type": "node",
       "request": "launch",
       "name": "DP",
-      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/paintHouse.js"
+      "program": "${workspaceFolder}/javascript/algorithms/dynamicProgramming/deletionDistance.js"
     },
     {
       "type": "node",

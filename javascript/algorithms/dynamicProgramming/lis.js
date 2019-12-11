@@ -12,6 +12,7 @@ let getLIS = (nums) => {
 
 let lis = (nums, pos = 0) => {
   if (pos >= nums.length) return 0;
+
 };
 
 getLIS([0, 4, 2, 3, 1, 5, 8]);
